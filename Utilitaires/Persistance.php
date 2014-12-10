@@ -6,5 +6,5 @@
  */
 
 abstract class  Persistance {
-    public abstract function ajouterFlux($path, $link);
+    public abstract function ajouterFlux($name, $link);
 } 
