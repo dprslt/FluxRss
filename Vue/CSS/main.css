@@ -1,3 +1,11 @@
-.top_bar{
+body{
+    margin: 0;
+}
 
+.top_bar{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: #454546;
+    height: 30px;
 }
