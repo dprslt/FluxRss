@@ -5,11 +5,11 @@
 
 body{
     margin: 0;
-    font-family: "Verdana";
+    font-family: 'Open Sans',sans-serif;
 }
 
 .top_bar{
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     background: #454546;
@@ -19,7 +19,7 @@ body{
 
 .navig_bar{
     border-right: solid 1px #e6e6e6;
-    position: absolute;
+    position: fixed;
     width: 200px;
     height: 100%;
     top:0;
@@ -41,6 +41,7 @@ body{
     display: block;
     padding: 10px;
     border-top: solid 1px #e8e8e8;
+    white-space: nowrap;
 }
 
 .center_news:hover{
@@ -50,11 +51,13 @@ body{
 .center_news a{
     max-width: 100%;
     font-weight: bold;
-    color: #759ab5;
+    color: #7f8e96;
     text-decoration: none;
-
     text-overflow: ellipsis;
     overflow: hidden;
+}
+.center_news:hover a{
+    color: #5c666d;
 }
 
 .time_indicator_on{

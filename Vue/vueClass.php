@@ -24,18 +24,19 @@
             <p>Menu</p>
         </div>
         <div class="center_container">
+
             <div class="center_newslist">
-                <div class="center_news">
-                    <div class="time_indicator_on"></div>
-                    <a href="http://google.com">google.comeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</a>
-                </div>
-                <div class="center_news">
-                    <div class="time_indicator_off"></div>
-                    <a href="http://google.com">google.com</a>
-                </div>
-                <div class="center_news">.<a href="http://google.com">google.com</a></div>
-                <div class="center_news">.<a href="http://google.com">google.com</a></div>
-                <div class="center_news">.<a href="http://google.com">google.com</a></div>
+                <?php
+                for($i = 0;$i<50;++$i){
+                    echo '
+                        <div class="center_news">
+                            <div class="time_indicator_on"></div>
+                            <a href="http://google.com">google.comeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</a>
+                            <span> - 21:20 10 déc 2014</span>
+                        </div>
+                    ';
+                }
+                ?>
 
             </div>
         </div>
