@@ -22,7 +22,6 @@
             <script type="text/javascript">
                 var frame = document.getElementById('frame');
                 frame.onload = function () {
-                    console.log("refresh !");
                     setTimeout(function() {
                         document.getElementById('frame').contentWindow.location.reload();
                     },1000);
