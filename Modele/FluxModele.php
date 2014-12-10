@@ -7,5 +7,12 @@
  */
 
 class FluxModele {
+    public function ajouterFlux($name, $link){
+        Boniche::NettoyageURL($link);
+        Boniche::NettoyageBDD($link);
+        Boniche::NettoyageBDD($name);
 
+        $dal = new PersistanceBD();
+        $dal->ajouterFlux($name,$link);
+    }
 } 
