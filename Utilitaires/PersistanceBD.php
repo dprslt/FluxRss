@@ -11,11 +11,10 @@ class PersistanceBD extends Persistance {
     public function ajouterFlux($name, $link)
     {
         $bd = BD::getInstance();
-        $req = "INSERT INTO tflux VALUES(NULL, ?, ?)";
         $params = array(
             '1' => array($name, PDO::PARAM_STR),
             '2' => array($link, PDO::PARAM_STR),
         );
-        $bd->requete($req,$params);
+        $bd->requete("INSERT INTO tflux VALUES(NULL, ?, ?)",$params);
     }
 }
