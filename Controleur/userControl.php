@@ -6,9 +6,6 @@
  * Time: 17:06
  */
 
-require_once(__DIR__."/../Config/config.php");
-
-require_once($path."/Utilitaires/Validation.php");
 $tabErreur = array();
 
 function addFlux(){

@@ -21,7 +21,7 @@ class BD {
             global $db_host,$db_name, $db_password,$db_user;
             $params = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET Names UTF8");
             //$pdo = new PDO("mysql:host=".$db_host.";dbname=".$db_name,$db_user,$db_password,$params);
-            //
+
             $this->pdo = new PDO("mysql:host=".$db_host.";dbname=".$db_name,$db_user,$db_password,$params);
             //Léve une exception en cas d'erreur
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -57,9 +57,8 @@ class BD {
           return $result;
        }
        catch (PDOException $e){
-            $tabErreur[] = "Erreur de lecture BD";
+            throw new Exception("Erreur de lecture BD, requete invalide ?");
        }
-        
    }
    
    public function requete($req, $params){
@@ -75,5 +74,6 @@ class BD {
         catch (PDOException $e){
             $tabErreur[] = "Erreur de requete BD";
         }
+       return;
    }
 }
