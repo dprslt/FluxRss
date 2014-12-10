@@ -5,7 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
-    //require("Controleur/control.php");
+    //require("Controleur/userControl.php");
     //require("test.php");
 
 
