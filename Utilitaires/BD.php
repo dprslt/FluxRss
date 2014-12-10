@@ -37,10 +37,10 @@ class BD {
     private static $instance = null;
     
     public static function getInstance(){
-        if($instance == null){
-            $instance = new self;
+        if(self::$instance == null){
+            self::$instance = new self;
         }
-        return $instance;
+        return self::$instance;
     }
 
 
