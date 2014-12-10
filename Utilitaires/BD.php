@@ -9,7 +9,7 @@
 /**
  * Description of BD
  *
- * @author chdelain
+ * @author Charlotte DELAIN, Théo DEPRESLE
  */
 class BD {
     private $pdo = null;

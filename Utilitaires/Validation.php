@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class Validation
+ * @author Charlotte DELAIN, Théo DEPRESLE
+ */
 class Validation {
     
     public static function existe($var){

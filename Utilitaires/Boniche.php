@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class Boniche
+ * @author Charlotte DELAIN, Théo DEPRESLE
+ */
 
 class Boniche {
     public static function NettoyageBDD($var){

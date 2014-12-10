@@ -1,9 +1,8 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: Theo
- * Date: 02/12/2014
- * Time: 08:33
+ * Class XMLParser
+ * @author Charlotte DELAIN, Théo DEPRESLE
  */
 
 class XMLParser {

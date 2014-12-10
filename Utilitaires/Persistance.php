@@ -1,9 +1,8 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: Theo
- * Date: 07/12/2014
- * Time: 18:21
+ * Class Persistance
+ * @author Charlotte DELAIN, Théo DEPRESLE
  */
 
 abstract class  Persistance {
