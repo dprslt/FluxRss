@@ -10,6 +10,7 @@ class News {
     private $datePub;
     private $dateAjout;
 
+
     private $flux;
 
     /**
@@ -77,12 +78,32 @@ class News {
         $this->url = $url;
     }
 
+    /**
+     * @param mixed $dateAjout
+     */
+    protected function setDateAjout($dateAjout)
+    {
+        $this->dateAjout = $dateAjout;
+    }
+
+    /**
+     * @param mixed $datePub
+     */
+    protected function setDatePub($datePub)
+    {
+        $this->datePub = $datePub;
+    }
+
 
     public static function newNews($id,$flux,$title,$description,$url,$datePub = "",$dateAjout = "today"){
         if($dateAjout == "today")
             $dateAjout = date("H:i d m Y");
         $ne = new News($id,$title,$description,$flux);
         $ne->setUrl($url);
+        $ne->setDateAjout($dateAjout);
+        $ne->setDatePub($datePub);
+
+        return $ne;
     }
 
     public function __construct($id,$title,$description,$flux){
