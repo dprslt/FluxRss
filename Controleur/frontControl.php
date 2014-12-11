@@ -12,8 +12,19 @@ class frontControler{
     {
         require_once(__DIR__ . "/../Config/config.php");
         global $path;
-        require_once($path . "Utilitaires/Validation.php");
-        require_once($path . "Utilitaires/Boniche.php");
+        require_once ($path."Config/spLClassLoader.php");
+
+        $myAutoLoader = new SplClassLoader("Config",$path);
+        $myAutoLoader->register();
+        $myAutoLoader = new SplClassLoader("Controleur", $path);
+        $myAutoLoader->register();
+        $myAutoLoader = new SplClassLoader("Metier",$path);
+        $myAutoLoader->register();
+        $myAutoLoader = new SplClassLoader("Modele",$path);
+        $myAutoLoader->register();
+        $myAutoLoader = new SplClassLoader("Utilitaires",$path);
+        $myAutoLoader->register();
+
 
         //TODO Autoloader
 

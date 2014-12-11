@@ -2,7 +2,31 @@
 
 
 class News {
+
+    private $id;
     private $title;
+    private $url;
+    private $description;
+    private $datePub;
+    private $dateAjout;
+
+    private $flux;
+
+    /**
+     * @return mixed
+     */
+    public function getDateAjout()
+    {
+        return $this->dateAjout;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatePub()
+    {
+        return $this->datePub;
+    }
 
     /**
      * @return mixed
@@ -13,59 +37,19 @@ class News {
     }
 
     /**
-     * @param mixed $description
+     * @return mixed
      */
-    public function setDescription($description)
+    public function getFlux()
     {
-        $this->description = $description;
+        return $this->flux;
     }
 
     /**
      * @return mixed
      */
-    public function getGuid()
+    public function getId()
     {
-        return $this->guid;
-    }
-
-    /**
-     * @param mixed $guid
-     */
-    public function setGuid($guid)
-    {
-        $this->guid = $guid;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLink()
-    {
-        return $this->link;
-    }
-
-    /**
-     * @param mixed $link
-     */
-    public function setLink($link)
-    {
-        $this->link = $link;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPubDate()
-    {
-        return $this->pubDate;
-    }
-
-    /**
-     * @param mixed $pubDate
-     */
-    public function setPubDate($pubDate)
-    {
-        $this->pubDate = $pubDate;
+        return $this->id;
     }
 
     /**
@@ -77,56 +61,38 @@ class News {
     }
 
     /**
-     * @param mixed $title
+     * @return mixed
      */
-    public function setTitle($title)
+    public function getUrl()
     {
+        return $this->url;
+    }
+
+
+    /**
+     * @param mixed $url
+     */
+    protected function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+
+    public static function newNews($id,$flux,$title,$description,$url,$datePub = "",$dateAjout = "today"){
+        if($dateAjout == "today")
+            $dateAjout = date("H:i d m Y");
+        $ne = new News($id,$title,$description,$flux);
+        $ne->setUrl($url);
+    }
+
+    public function __construct($id,$title,$description,$flux){
+        $this->id = $id;
         $this->title = $title;
+        $this->description = $description;
+        if(!($flux instanceof Flux)){
+            throw new Exception("Flux invalide !");
+        }
+        $this->flux = $flux;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param mixed $category
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getTitre()
-    {
-        return $this->titre;
-    }
-
-    /**
-     * @param mixed $titre
-     */
-    public function setTitre($titre)
-    {
-        $this->titre = $titre;
-    }
-
-    private $titre;
-    private $link;
-    private $description;
-    private $pubDate;
-    private $guid;
-
-
-    public static function newNews($link){
-
-    }
-
 
 } 
