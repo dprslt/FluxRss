@@ -16,9 +16,18 @@ function addFlux(){
     $link = $_REQUEST['valid'];
     $name = $_REQUEST['name'];
 
-
     $fluxMod = new FluxModele();
     $fluxMod->ajouterFlux($name, $link);
+}
+
+function afficherNews(){
+    // 50 news par page
+    $page = $_REQUEST['page'];
+    Validation::existe($page);
+    Validation::isNumPage($page);
+
+    $mod = new NewsModele();
+    $news = $mod->getPageNews();
 }
 
 

@@ -1,0 +1,30 @@
+<?php
+
+class Validation {
+
+static function val_action($action) {
+
+if (!isset($action)) {
+throw new Exception('pas d\'action');
+}
+}
+
+static function val_form(&$dataVueEreur) {
+
+if (!isset($nom)||$nom=="") {
+$dataVueEreur[] =	"pas de nom";
+throw new Exception('erreur validation');
+}
+
+if (!isset($age)||$age=="") {
+$dataVueEreur[] ="pas d'age ";
+throw new Exception('erreur validation');
+
+}
+
+}
+
+}
+?>
+
+        

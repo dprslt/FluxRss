@@ -17,4 +17,19 @@ class PersistanceBD extends Persistance {
         );
         $bd->requete("INSERT INTO tflux VALUES(NULL, ?, ?)",$params);
     }
+
+    public function getNews($page)
+    {
+        $bd = BD::getInstance();
+        $params = array(
+            '1' => array($page, PDO::PARAM_INT),
+            '2' => array(($page -1)*50, PDO::PARAM_INT),
+        );
+        $result = $bd->lecture("SELECT * FROM tnews ORDER BY dateAjout LIMIT ?, ?",$params);
+        $tabNews = array();
+        foreach($result as $news){
+            $tabNews[] = new News();
+        }
+
+    }
 }

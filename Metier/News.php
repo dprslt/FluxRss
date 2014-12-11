@@ -99,13 +99,34 @@ class News {
     {
         $this->category = $category;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * @param mixed $titre
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+    }
+
+    private $titre;
     private $link;
     private $description;
     private $pubDate;
     private $guid;
 
-    //Collection
-    private $category;
+
+    public static function newNews($link){
+
+    }
 
 
 } 

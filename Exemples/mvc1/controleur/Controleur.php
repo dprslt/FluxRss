@@ -1,0 +1,81 @@
+<?php
+
+//chargement biblio
+require_once(__DIR__.'/Validation.php');
+require_once(__DIR__.'/../modeles/Simplemodel.php');
+
+
+//chargement config
+include_once(__DIR__.'/../config/Config.php');
+
+//debut
+
+//on initialise un tableau d'erreur
+$dataVueEreur = array ();
+
+try{
+$action=$_REQUEST['action'];
+
+switch($action) {
+
+//pas d'action, on réinitialise 1er appel
+case NULL:
+	Reinit();
+	break;
+
+
+case "validationFormulaire":
+	ValidationFormulaire();
+	break;
+
+//mauvaise action
+default:
+$dataVueEreur[] =	"Erreur d'appel php";
+require (__DIR__.'/../vues/vuephp1.php');
+break;
+}
+
+} catch (PDOException $e)
+{
+	//si erreur BD, pas le cas ici
+	$dataVueEreur[] =	"Erreur inattendue!!! ";
+	require (__DIR__.'/../vues/erreur.php');
+
+}
+catch (Exception $e2)
+	{
+	$dataVueEreur[] =	"Erreur inattendue!!! ";
+	require (__DIR__.'/../vues/erreur.php');
+	}
+
+
+//fin
+exit(0);
+
+
+function Reinit() {
+$dataVue = array (
+	'nom' => "",
+	'age' => 0,
+	);
+	require (__DIR__.'/../vues/vuephp1.php');
+}
+
+function ValidationFormulaire() {
+//si exception, ca remonte !!!
+$nom=$_REQUEST['txtNom']; // txtNom = nom du champ texte dans le formulaire
+$age=$_REQUEST['txtAge'];
+Validation::val_form($nom,$age,$dataVueEreur);
+
+$model = new Simplemodel();
+$data=$model->get_data();
+
+$dataVue = array (
+	'nom' => $nom,
+	'age' => $age,
+        'data' => $data,
+	);
+	require (__DIR__.'/../vues/vuephp1.php');
+}
+
+?>

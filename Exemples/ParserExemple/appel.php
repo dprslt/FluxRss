@@ -3,10 +3,10 @@
 <?php
 
 
-include ('XmlParserExample1.php');
-include ($path.'RSSParser/XMLParser.php');
-include ($path.'Metier/News.php');
-include ($path.'Metier/Flux.php');
+include('XmlParserExample1.php');
+include($path . 'RSSParser/XMLParser.php');
+include($path . 'Metier/News.php');
+include($path . 'Metier/Flux.php');
 
 
 

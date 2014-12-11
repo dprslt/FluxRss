@@ -8,4 +8,6 @@ $db_name = "FluxRss";
 $db_user ="root";
 $db_password = "";
 
+//TODO vue dans un tableau
+
 ?>

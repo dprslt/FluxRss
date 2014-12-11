@@ -58,5 +58,11 @@ class Validation {
         //A completer en fonction des choix fait en BD.
         
     }
+
+    public static function isNumPage($nb){
+        if(filter_var($nb,FILTER_VALIDATE_INT)){
+            throw new Exception("Numero de page invalide.");
+        }
+    }
         
 }
