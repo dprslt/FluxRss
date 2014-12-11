@@ -6,53 +6,52 @@
  * Time: 17:06
  */
 
-$tabErreur = array();
-
-function addFlux(){
-    Validation::existe($_REQUEST['link']);
-    Validation::existe($_REQUEST['name']);
-    Validation::URLValid($_REQUEST['link']);
-
-    $link = $_REQUEST['valid'];
-    $name = $_REQUEST['name'];
-
-    $fluxMod = new FluxModele();
-    $fluxMod->ajouterFlux($name, $link);
-}
-
-function afficherNews(){
-    // 50 news par page
-    $page = $_REQUEST['page'];
-    Validation::existe($page);
-    Validation::isNumPage($page);
-
-    $mod = new NewsModele();
-    $news = $mod->getPageNews();
-}
 
 
-echo $path;
+class UserControler
+{
+    public function __construct(){
+        $tabErreur = array();
 
-if(isset($_REQUEST['action']))
-    $action = $_REQUEST['action'];
-else
-    $action = null;
+        try{
+            switch ($_REQUEST['action']){
 
-try{
-    switch ($action){
-
-        case null:
-            echo "11";
-            echo '<a href=".?action=tet" >ICI</a>';
-            break;
-        case "addFlux":
-            addFlux();
-            break;
+                case null:
+                    break;
+                case "ajouterFlux":
+                    $this->addFlux();
+                    break;
+            }
+        }
+        catch (Exception $e){
+            $tabErreur[] = $e->getMessage();
+        }
     }
-}
-catch(Exception $e){
-    $tabErreur[] = $e->getMessage();
-}
 
+    function addFlux()
+    {
+        Validation::existe($_REQUEST['link']);
+        Validation::existe($_REQUEST['name']);
+        Validation::URLValid($_REQUEST['link']);
 
+        $link = $_REQUEST['valid'];
+        $name = $_REQUEST['name'];
+
+        $fluxMod = new FluxModele();
+        $fluxMod->ajouterFlux($name, $link);
+    }
+
+    function afficherNews()
+    {
+        // 50 news par page
+        $page = $_REQUEST['page'];
+        Validation::existe($page);
+        Validation::isNumPage($page);
+
+        $mod = new NewsModele();
+        $news = $mod->getPageNews($page);
+
+    }
+
+}
 

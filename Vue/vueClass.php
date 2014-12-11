@@ -22,13 +22,12 @@
 <header>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="CSS/desktop.css"/>
-<header>
+</header>
 
     <body>
         <div class="top_bar" >
             <?=
             $template->render(array(
-                'moteur_name' => 'Twig'
             ))
                 ?>
         </div>

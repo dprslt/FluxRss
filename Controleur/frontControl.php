@@ -25,11 +25,23 @@ class frontControler{
         $myAutoLoader = new SplClassLoader("Utilitaires",$path);
         $myAutoLoader->register();
 
+        switch($_REQUEST['action']){
+            case 'afficherNews':
+            case 'afficherFluxs':
+            case 'afficherNewsOf':
+            case null:
+                $userCtr = new UserControler();
+                break;
 
-        //TODO Autoloader
+            case 'ajouterFlux':
+            case 'supprimerFlux':
+            case 'modifierFlux':
+                $admin = new AdminControler();
+                break;
+        }
 
         //TODO Dispatcher entre les controleurs => switch sur la var action
-        require($path . "Controleur/userControl.php");
+
 
     }
 
