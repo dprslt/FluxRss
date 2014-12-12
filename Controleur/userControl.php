@@ -55,13 +55,13 @@ class userControl
         // 50 news par page
         $page = $_REQUEST['page'];
         if(!isset($page))
-            $page = 0;
+            $page = 1;
         Validation::isNumPage($page);
 
         $mod = new NewsModele();
         $news = $mod->getPageNews($page);
 
-        echo 'test';
+        var_dump($news);
     }
 
 }
