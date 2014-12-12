@@ -25,10 +25,12 @@ class PersistanceBD extends Persistance {
             '1' => array($page, PDO::PARAM_INT),
             '2' => array(($page -1)*50, PDO::PARAM_INT),
         );
-        $result = $bd->lecture("SELECT * FROM tnews ORDER BY dateAjout LIMIT ?, ?",$params);
+        //Requete avec jointure, pour recuperer les images
+        $result = $bd->lecture("SELECT * FROM tnews ORDER BY datePub LIMIT ?, ?",$params);
+        $resultFlux = $bd->lecture("SELECT ");
         $tabNews = array();
         foreach($result as $news){
-            $tabNews[] = new News();
+            $tabNews[] = NEWS::newNews($news['id'],$news[''],,);
         }
 
         return $tabNews;
