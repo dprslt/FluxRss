@@ -2,5 +2,5 @@
 
 {% for key, element in News %}
     {#Appelle macro pour afficher toutes les News#}
-    VueNew.News(element.id, element.titre, element.URL, element.urlImage);
+    {{ VueNew.News(element.id, element.title, element.description, element.url, element.flux.URLImage) }}
 {% endfor %}

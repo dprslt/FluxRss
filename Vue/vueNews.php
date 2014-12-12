@@ -13,12 +13,14 @@
         'cache' => false
     ));
 
+    require '../Metier/Flux.php';
+    require '../Metier/News.php';
 
     $template = $twig->loadTemplate('News.twig');
     
-    $Flux = new Flux(1, '');
-    $News = new News(2, 'titre', 'url', 'urlImage');
-
+    $Flux = new Flux();
+    $News = new News(2, 'titre de la news', 'description blablabla', 'https://github.com/', $Flux);
+    $News2 = new News(4, 'titre de la news 2', 'description blablabla', 'https://google.com/', $Flux);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -29,11 +31,7 @@
 
     <body>
         <div class="top_bar" >
-            <?=
-            $template->render(array(
-                '$News' => 'Twig'
-            ))
-                ?>
+            
         </div>
         <div class="navig_bar">
             <p>Menu</p>
@@ -44,10 +42,10 @@
         <div class="center_container">
 
             <div class="center_newslist">
-                <?php
-                for($i = 0;$i<50;++$i){
-                    
-                }
+                <?=
+            $template->render(array(
+                'News' => array($News,$News2)
+            ))
                 ?>
 
             </div>
