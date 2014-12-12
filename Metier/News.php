@@ -111,10 +111,11 @@ class News {
         return $ne;
     }
 
-    public function __construct($id,$title,$description,$flux){
+    public function __construct($id,$title,$description,$url,$flux){
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
+		$this->url = $url;
         if(!($flux instanceof Flux)){
             throw new Exception("Flux invalide !");
         }
