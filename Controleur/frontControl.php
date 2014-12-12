@@ -10,14 +10,16 @@ use config\SplClassLoader;
 use controleur\adminControl;
 use controleur\userControl;
 
+require_once(__DIR__ ."/../Config/config.php");
+
 class frontControl{
 
 
     public function __construct()
     {
 
+        global $path;
 
-        require_once(__DIR__ ."/../Config/config.php");
         require_once ($path."Config/spLClassLoader.php");
 
         echo $path;

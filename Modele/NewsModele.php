@@ -8,7 +8,7 @@
 
 namespace modele;
 
-use PersistanceBD;
+use \utilitaires\PersistanceBD;
 
 class NewsModele {
 

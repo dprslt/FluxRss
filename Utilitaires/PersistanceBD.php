@@ -6,6 +6,12 @@
  * Time: 21:50
  */
 
+namespace utilitaires;
+
+
+use PDO;
+use \utilitaires\Persistance;
+
 class PersistanceBD extends Persistance {
 
     public function ajouterFlux($name, $link)

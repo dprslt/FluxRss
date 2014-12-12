@@ -21,9 +21,8 @@ class userControl
 
         try{
             switch ($_REQUEST['action']){
-
-                case 'afficherNews':
                 case null:
+                case 'afficherNews':
                     $this->afficherNews();
                     break;
 
@@ -34,6 +33,7 @@ class userControl
         }
         catch (Exception $e){
             $tabErreur[] = $e->getMessage();
+            var_dump($tabErreur);
         }
     }
 
@@ -54,14 +54,14 @@ class userControl
     {
         // 50 news par page
         $page = $_REQUEST['page'];
-        Validation::existe($page);
+        if(!isset($page))
+            $page = 0;
         Validation::isNumPage($page);
 
         $mod = new NewsModele();
         $news = $mod->getPageNews($page);
 
-        var_dump($news);
-
+        echo 'test';
     }
 
 }

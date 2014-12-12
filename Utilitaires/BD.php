@@ -6,6 +6,9 @@
  * and open the template in the editor.
  */
 
+namespace utilitaires;
+use PDO;
+
 /**
  * Description of BD
  *
