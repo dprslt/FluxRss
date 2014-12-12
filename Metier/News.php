@@ -100,8 +100,13 @@ class News {
             $dateAjout = date("H:i d m Y");
         $ne = new News($id,$title,$description,$flux);
         $ne->setUrl($url);
+        if($datePub == ""){
+            $ne->setDatePub($dateAjout);
+        }
+        else
+            $ne->setDatePub($datePub);
         $ne->setDateAjout($dateAjout);
-        $ne->setDatePub($datePub);
+
 
         return $ne;
     }

@@ -6,7 +6,7 @@ class Controleur {
 
 function __construct() {
 
-// on démarre ou reprend la session
+// on dï¿½marre ou reprend la session
 session_start();
 
 
@@ -20,7 +20,7 @@ $action=$_REQUEST['action'];
 
 switch($action) {
 
-//pas d'action, on réinitialise 1er appel
+//pas d'action, on rÃ©initialise 1er appel
 case NULL:
 	$this->Reinit();
 	break;
