@@ -9,9 +9,13 @@ class XMLParser {
     private $path;
     private $result;
 
-    public function __construct($path)
+    public function __construct($flux)
     {
-        $this -> path = $path;
+        if(!($flux instanceof \metier\Flux)){
+            throw new Exception("XMLParser construct : Flux Invalide");
+        }
+        $this->flux = $flux;
+        $this -> path = $flux->getPath();
     }
 
     public function getResult() {
@@ -56,14 +60,23 @@ class XMLParser {
 
     private $item ;
 
-    private $title = false;
-    private $image = false;
-    private $url = false;
-    private $description = false;
-    private $link = false;
-    private $date = false;
+    private $b_title = false;
+    private $b_url = false;
+    private $b_link = false;
+    private $b_description = false;
+    private $b_guid = false;
+    private $b_date = false;
 
-    private $items = array();
+    private $b_item = false;
+    private $b_image = false;
+
+    private $id;
+    private $title;
+    private $url;
+    private $description;
+    private $datePub;
+    private $dateAjout;
+
 
 
     private function startElement($parser, $name, $attrs)
@@ -71,25 +84,25 @@ class XMLParser {
         printf($name.' - <br/>');
         switch($name){
             case "TITLE":
-                $this->title = true;
+                $this->b_title = true;
                 break;
             case "ITEM":
-                $this->item = new News();
+                $this->b_item = true;
                 break;
             case "IMAGE":
-                $this->image = true;
+                $this->b_image = true;
                 break;
             case "URL":
-                $this->url = true;
+                $this->b_url = true;
                 break;
             case "DESCRIPTION":
-                $this->description = true;
+                $this->b_description = true;
                 break;
             case "LINK" :
-                $this->link = true;
+                $this->b_link = true;
                 break;
             case "PUBDATE":
-                $this->date = true;
+                $this->b_date = true;
                 break;
         }
     }
@@ -99,31 +112,29 @@ class XMLParser {
     {
        if($name == "ITEM")
        {
-            $this->items[] = $this->item;
+            $bd = new \utilitaires\PersistanceBD();
+
             return;
        }
 
         switch($name){
             case "TITLE":
-                $this->title = false;
+                $this->b_title = false;
                 break;
             case "IMAGE":
-                $this->image = false;
+                $this->b_image = false;
                 break;
             case "URL":
-                $this->url = false;
+                $this->b_url = false;
                 break;
             case "DESCRIPTION":
-                $this->description = false;
+                $this->b_description = false;
                 break;
             case "LINK" :
-                $this->link = false;
-                break;
-            case "CHANNEL":
-                $this->flux->setNews($this->items);
+                $this->b_link = false;
                 break;
             case "PUBDATE":
-                $this->date = false;
+                $this->b_date = false;
                 break;
         }
 
@@ -131,6 +142,8 @@ class XMLParser {
 
     private function characterData($parser, $data)
     {
+
+
         //On doit concatener les data avant de les enregistrer.
         if($this->item != null){
             if($this->title){$this->item->setTitle($this->item->getTitle().$data);}
