@@ -1,5 +1,8 @@
 <?php
 
+namespace utilitaires;
+use Exception;
+
 /**
  * Class Validation
  * @author Charlotte DELAIN, Théo DEPRESLE

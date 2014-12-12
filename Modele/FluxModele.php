@@ -6,6 +6,8 @@
  * Time: 21:42
  */
 
+namespace modele;
+
 class FluxModele {
     public function ajouterFlux($name, $link){
         Boniche::NettoyageURL($link);

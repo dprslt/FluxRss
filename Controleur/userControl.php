@@ -6,9 +6,15 @@
  * Time: 17:06
  */
 
+namespace controleur;
+
+use Exception;
+use utilitaires\Validation;
+use modele\FluxModele;
+use modele\NewsModele;
 
 
-class UserControler
+class userControl
 {
     public function __construct(){
         $tabErreur = array();
@@ -16,8 +22,11 @@ class UserControler
         try{
             switch ($_REQUEST['action']){
 
+                case 'afficherNews':
                 case null:
+                    $this->afficherNews();
                     break;
+
                 case "ajouterFlux":
                     $this->addFlux();
                     break;
@@ -50,6 +59,8 @@ class UserControler
 
         $mod = new NewsModele();
         $news = $mod->getPageNews($page);
+
+        var_dump($news);
 
     }
 

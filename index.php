@@ -3,5 +3,5 @@
     //require("test.php");
 
     require('Controleur/frontControl.php');
-    $front = new frontControler();
+    $front = new \controleur\frontControl();
 ?>

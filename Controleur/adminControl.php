@@ -6,7 +6,9 @@
  * Time: 21:32
  */
 
-class AdmminControler{
+namespace controleur;
+
+class adminControl{
     public function __construct(){
 
     }

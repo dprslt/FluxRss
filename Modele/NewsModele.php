@@ -6,6 +6,10 @@
  * Time: 11:36
  */
 
+namespace modele;
+
+use PersistanceBD;
+
 class NewsModele {
 
     public function getPageNews($page)

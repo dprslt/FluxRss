@@ -1,5 +1,6 @@
 <?php
 
+namespace metier;
 
 class Flux {
     private $id;
@@ -156,6 +157,16 @@ class Flux {
     public function getTitle()
     {
         return $this->title;
+    }
+
+    public function __construct($id,$title,$path,$link,$description,$image_url,$image_titre,$image_link){
+        $this->id = $id;
+        $this->title = $title;
+        $this->link = $link;
+        $this->description = $description;
+        $this->image_url = $image_url;
+        $this->image_titre = $image_titre;
+        $this->image_link = $image_link;
     }
 
 
