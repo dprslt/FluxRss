@@ -10,6 +10,15 @@ class News {
     private $description;
     private $datePub;
     private $dateAjout;
+    private $guid;
+
+    /**
+     * @return mixed
+     */
+    public function getGuid()
+    {
+        return $this->guid;
+    }
 
 
     private $flux;

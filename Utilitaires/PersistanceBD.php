@@ -15,15 +15,33 @@ use \utilitaires\Persistance;
 
 class PersistanceBD extends Persistance {
 
-    public function ajouterFlux($name, $link)
+    public function ajouterFlux($link)
     {
         $bd = BD::getInstance();
         $params = array(
-            '1' => array($name, PDO::PARAM_STR),
             '2' => array($link, PDO::PARAM_STR),
         );
-        $bd->requete("INSERT INTO tflux VALUES(NULL, ?, ?)",$params);
+        //$bd->requete("INSERT INTO tflux VALUES(NULL, ?, ?)",$params);
     }
+
+    public function ajouterNews($news){
+        if(!($news instanceof News)){
+            throw new \Exception("DAL : Objet news invalide");
+        }
+        var_dump($news);
+        $bd = BD::getInstance();
+        $params = array(
+            '1' => array($news->getFlux(), PDO::PARAM_INT),
+            '2' => array($news->getTitle(), PDO::PARAM_STR),
+            '3' => array($news->getUrl(), PDO::PARAM_STR),
+            '4' => array($news->getGuid(), PDO::PARAM_STR),
+            '5' => array($news->getDescription(), PDO::PARAM_STR),
+            '6' => array($news->getDatePub(), PDO::PARAM_STR),
+            '7' => array($news->getDateAjout(), PDO::PARAM_STR)
+        );
+        $bd->requete("INSERT INTO tnews VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)",$params);
+    }
+
 
     public function getNews($page)
     {

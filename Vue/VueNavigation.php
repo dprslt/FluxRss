@@ -2,7 +2,7 @@
     $template = $twig->loadTemplate('News.twig');
 ?>
 <div class="navig_bar">
-    <h2>Menu<h2>
+    <h2>Menu</h2>
     <a href="?action=afficherNews">Toutes les news</a>
     <a href="?action=afficherFlux">Listes des flux</a>
     </br>

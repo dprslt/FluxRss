@@ -9,9 +9,11 @@
 namespace controleur;
 
 use Exception;
+use metier\Flux;
 use utilitaires\Validation;
 use modele\FluxModele;
 use modele\NewsModele;
+use utilitaires\XMLParser;
 
 
 class userControl
@@ -19,7 +21,12 @@ class userControl
     public function __construct(){
         $tabErreur = array();
 
+
         try{
+            $flux = new Flux(1,"test","http://www.comptoir-hardware.com/home.xml","","","","","");
+            $test = new XMLParser($flux);
+           //$test->parse();
+
             switch ($_REQUEST['action']){
                 case null:
                 case 'afficherNews':
@@ -52,6 +59,7 @@ class userControl
 
     function afficherNews()
     {
+        global $path;
         // 50 news par page
         $page = $_REQUEST['page'];
         if(!isset($page))
@@ -59,9 +67,10 @@ class userControl
         Validation::isNumPage($page);
 
         $mod = new NewsModele();
-        $news = $mod->getPageNews($page);
+        $newstab = $mod->getPageNews($page);
 
-        var_dump($news);
+        var_dump($newstab);
+        require($path . "Vue/vueNews.php");
     }
 
 }

@@ -34,6 +34,9 @@ class frontControl{
         $myAutoLoader->register();
         $myAutoLoader = new SplClassLoader("utilitaires",$path);
         $myAutoLoader->register();
+        $myAutoLoader = new SplClassLoader("Twig",$path."lib/");
+        $myAutoLoader->setNamespaceSeparator("_");
+        $myAutoLoader->register();
 
 
         switch($_REQUEST['action']){
