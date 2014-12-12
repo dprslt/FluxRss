@@ -70,7 +70,7 @@ class userControl
         $newstab = $mod->getPageNews($page);
 
         var_dump($newstab);
-        require($path . "Vue/vueNews.php");
+        require($path . "Vue/VueNews2.php");
     }
 
 }
