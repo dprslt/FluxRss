@@ -1,0 +1,6 @@
+{% import 'VueNews.twig' as VueNew %}
+
+{% for key, element in News %}	
+    {#Appelle macro pour afficher tous les Flux#}
+    VueNew.Flux(element.id, element.titre, element.URL, element.resume, element.image);
+{% endfor %}

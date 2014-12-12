@@ -30,21 +30,16 @@ USE `fluxrss`;
 
 CREATE TABLE IF NOT EXISTS `tflux` (
   `id` int(3) NOT NULL AUTO_INCREMENT,
-  `url` varchar(255) NOT NULL,
-  `chan_title` varchar(200) NOT NULL,
-  `chan_link` varchar(500) NOT NULL,
-  `chan_descripton` varchar(500) NOT NULL,
+  `title` varchar(200) NOT NULL,  
+  `path` varchar(500) NOT NULL,
+  `link` varchar(1000) NOT NULL,
+  `descripton` varchar(2000) NOT NULL,
+  `image_url` varchar(1000),
+  `image_titre` varchar(1000),
+  `image_link` varchar(1000),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `chan_link` (`chan_link`),
-  UNIQUE KEY `url` (`url`)
+  UNIQUE KEY `path` (`path`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Contenu de la table `tflux`
---
-
-INSERT INTO `tflux` (`id`, `url`, `chan_title`, `chan_link`, `chan_descripton`) VALUES
-(1, 'dfghjk', 'gio', 'fghj', 'gh');
 
 -- --------------------------------------------------------
 
@@ -56,8 +51,11 @@ CREATE TABLE IF NOT EXISTS `tnews` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `flux` int(3) NOT NULL,
   `title` varchar(255) NOT NULL,
-  `link` varchar(200) NOT NULL,
-  `description` varchar(1000) NOT NULL,
+  `url` varchar(1000) NOT NULL,
+  `guid` varchar(1000) NOT NULL,
+  `description` varchar(2000) NOT NULL,
+  `datePub` varchar(200),
+  `dateAjout` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `flux` (`flux`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;

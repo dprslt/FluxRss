@@ -1,0 +1,6 @@
+{% import 'VueNews.twig' as VueNew %}
+
+{% for key, element in News %}
+    {#Appelle macro pour afficher toutes les News#}
+    VueNew.News(element.id, element.titre, element.URL, element.urlImage);
+{% endfor %}

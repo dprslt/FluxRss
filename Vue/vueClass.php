@@ -14,7 +14,10 @@
     ));
 
 
-    $template = $twig->loadTemplate('test.twig');
+    $template = $twig->loadTemplate('News.twig');
+    
+    $Flux = new Flux();
+    $News = new News(2, 'titre', 'url', 'urlImage');
 
 ?>
 <!DOCTYPE HTML>
@@ -28,7 +31,7 @@
         <div class="top_bar" >
             <?=
             $template->render(array(
-                'moteur_name' => 'Twig'
+                '$News' => 'Twig'
             ))
                 ?>
         </div>
@@ -43,13 +46,7 @@
             <div class="center_newslist">
                 <?php
                 for($i = 0;$i<50;++$i){
-                    echo '
-                        <div class="center_news">
-                            <div class="time_indicator_on"></div>
-                            <a href="http://google.com">google.comeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</a>
-                            <span> - 21:20 10 déc 2014</span>
-                        </div>
-                    ';
+                    
                 }
                 ?>
 
