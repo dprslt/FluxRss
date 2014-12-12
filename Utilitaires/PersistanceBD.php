@@ -31,5 +31,7 @@ class PersistanceBD extends Persistance {
             $tabNews[] = new News();
         }
 
+        return $tabNews;
+
     }
 }

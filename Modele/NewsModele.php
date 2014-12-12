@@ -11,6 +11,6 @@ class NewsModele {
     public function getPageNews($page)
     {
         $dal = new PersistanceBD();
-        $dal->getNews($page);
+        return $dal->getNews($page);
     }
 }

@@ -16,7 +16,7 @@
 
     $template = $twig->loadTemplate('News.twig');
     
-    $Flux = new Flux();
+    $Flux = new Flux(1, '');
     $News = new News(2, 'titre', 'url', 'urlImage');
 
 ?>
