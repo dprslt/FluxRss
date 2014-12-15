@@ -15,19 +15,34 @@ use \utilitaires\Persistance;
 
 class PersistanceBD extends Persistance {
 
-    public function ajouterFlux($link)
+    public function ajouterNouveauFlux($link)
     {
         $bd = BD::getInstance();
         $params = array(
-            '2' => array($link, PDO::PARAM_STR),
+            '1' => array($link, PDO::PARAM_STR),
         );
+        $bd->requete("INSERT INTO `tflux`(path) VALUES (?)",$params);
+    }
+
+    public function enregistrerFlux($flux){
+        $bd = BD::getInstance();
+        $params = array(
+            '1' => array($flux->getTitle(), PDO::PARAM_STR),
+            '2' => array($flux->getPath(), PDO::PARAM_STR),
+            '3' => array($flux->getLink(), PDO::PARAM_STR),
+            '4' => array($flux->getDescription(), PDO::PARAM_STR),
+            '5' => array($flux->getImageUrl(), PDO::PARAM_STR),
+            '6' => array($flux->getImageTitre(), PDO::PARAM_STR),
+            '7' => array($flux->getImageLink(), PDO::PARAM_STR),
+            '8' => array($flux->getId(), PDO::PARAM_INT)
+        );
+        $bd->requete("UPDATE `tflux` SET `title`=?,`path`=?,`link`=?,`descripton`=?,`image_url`=?,`image_titre`=?,`image_link`=? WHERE `id`= ?",$params);
     }
 
     public function ajouterNews($news){
         if(!($news instanceof News)){
             throw new \Exception("DAL : Objet news invalide");
         }
-        var_dump($news);
         $bd = BD::getInstance();
         $params = array(
             '1' => array($news->getFlux(), PDO::PARAM_INT),

@@ -8,7 +8,8 @@
 namespace utilitaires;
 
 abstract class  Persistance {
-    public abstract function ajouterFlux($link);
+    public abstract function ajouterNouveauFlux($link);
+    public abstract function enregistrerFlux($flux);
     public abstract function ajouterNews($news);
 
     public abstract function getNbFlux();
