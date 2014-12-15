@@ -21,7 +21,6 @@ class PersistanceBD extends Persistance {
         $params = array(
             '2' => array($link, PDO::PARAM_STR),
         );
-        //$bd->requete("INSERT INTO tflux VALUES(NULL, ?, ?)",$params);
     }
 
     public function ajouterNews($news){
@@ -50,29 +49,78 @@ class PersistanceBD extends Persistance {
             '1' => array($page-1, PDO::PARAM_INT),
             '2' => array(50, PDO::PARAM_INT),
         );
-        //Requete avec jointure, pour recuperer les images
         $result = $bd->lecture("SELECT * FROM  `tnews` ORDER BY datePub LIMIT ?, ?",$params);
         $tabNews = array();
         foreach($result as $news){
             $tabNews[] = new News($news['id'],$news['flux'],
                             $news['title'],$news['url'],
-                            $news['guid'],$news['description'],
+                            $news['guid'],html_entity_decode($news['description']),
                             $news['datePub'],$news['dateAjout']
             );
         }
+
         return $tabNews;
     }
 
-    public function getFlux($page){
+    public function getNewsFlux($flux)
+    {
+        $bd = BD::getInstance();
+        $params = array(
+          '1' => array($flux, PDO::PARAM_INT)
+        );
+        $result = $bd->lecture("SELECT COUNT(*) AS 'count' FROM `tnews` WHERE flux = ?", $params);
+
+        $tabNews = array();
+        foreach($result as $news){
+            $tabNews[] = new News($news['id'],$news['flux'],
+                $news['title'],$news['url'],
+                $news['guid'],html_entity_decode($news['description']),
+                $news['datePub'],$news['dateAjout']
+            );
+        }
+
+        return $tabNews;
+    }
+
+    public function getNbNews(){
+        $bd = BD::getInstance();
+        $result = $bd->lecture("SELECT COUNT(*) AS 'count' FROM `tnews` ",array());
+        //1Ligne de résultat est retourné, on prend la 1ere, puis la bonne colonne.
+        return $result[0]['count'];
+    }
+
+    public function getPageFluxs($page){
         $bd = BD::getInstance();
         $params = array(
             '1' => array($page, PDO::PARAM_INT),
-            '2' => array(($page -1)*50, PDO::PARAM_INT),
+            '2' => array(($page -1)*20, PDO::PARAM_INT),
         );
-        //Requete avec jointure, pour recuperer les images
         $result = $bd->lecture("SELECT * FROM  `tflux` LIMIT ?, ?",$params);
+        return $this->tabFluxFromRequest($result);
+    }
+
+    public function getNbFlux(){
+        $bd = BD::getInstance();
+        $result = $bd->lecture("SELECT COUNT(*) AS 'count' FROM `tflux` ",array());
+        //1Ligne de résultat est retourné, on prend la 1ere, puis la bonne colonne.
+        return $result[0]['count'];
+    }
+
+    public function getFluxs()
+    {
+        $bd = BD::getInstance();
+        $result = $bd->lecture("SELECT * FROM  `tflux` LIMIT ?, ?", array());
+        return $this->tabFluxFromRequest($result);
+    }
+
+
+
+
+
+    /*----- Private -----*/
+    private function tabFluxFromRequest($tabResult) {
         $tabFlux = array();
-        foreach($result as $flux){
+        foreach($tabResult as $flux){
             $tabFlux[$flux['id']] = new Flux($flux['id'],$flux['title'],$flux['path'],$flux['link'],
                 $flux['description'],$flux['image_url'],
                 $flux['image_titre'],$flux['image_link']);

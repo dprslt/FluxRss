@@ -23,10 +23,6 @@ class userControl
 
 
         try{
-            $flux = new Flux(1,"test","http://www.comptoir-hardware.com/home.xml","","","","","");
-            $test = new XMLParser($flux);
-           //$test->parse();
-
             switch ($_REQUEST['action']){
                 case null:
                 case 'afficherNews':
@@ -59,7 +55,7 @@ class userControl
 
     function afficherNews()
     {
-        global $path;
+        global $path, $vue;
         // 50 news par page
         $page = $_REQUEST['page'];
         if(!isset($page))
@@ -68,9 +64,13 @@ class userControl
 
         $mod = new NewsModele();
         $newstab = $mod->getPageNews($page);
+        $nbNews = $mod->getNbNews();
 
-        var_dump($newstab);
-        require($path . "Vue/VueNews2.php");
+        require($vue['affichageNews']);
+    }
+
+    function afficherNewsDuFlux(){
+
     }
 
 }

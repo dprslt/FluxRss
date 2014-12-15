@@ -22,7 +22,6 @@ class frontControl{
 
         require_once ($path."Config/spLClassLoader.php");
 
-        echo $path;
 
         $myAutoLoader = new SplClassLoader("config",$path);
         $myAutoLoader->register();

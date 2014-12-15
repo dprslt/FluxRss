@@ -5,7 +5,6 @@
  * Date: 10/12/2014
  * Time: 19:24
  */
-    //include_once('../lib/Twig/Autoloader.php');
     Twig_Autoloader::register();
 
     $loader = new Twig_Loader_Filesystem('Vue/Templates'); // Dossier contenant les templates
@@ -24,7 +23,7 @@
 
         <body>
         <div class="top_bar" >
-
+            <?= "tte : ".$nbNews ?>
         </div>
         <div class="navig_bar">
             <p>Menu</p>
