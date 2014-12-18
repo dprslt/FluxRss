@@ -1,5 +1,9 @@
-{% extends 'page.twig' %}
+{% extends 'menu.twig' %}
+{%import 'MacroFlux.twig' as appelMacro%}
 
 {% block title %} - Le flux et ses news{% endblock %}
 
-{% block contenu %} {% endblock %}
+{% block contenu %}
+   {% appelMacro.Flux(id, titre, URL, resume, image)%}
+   {%include 'News.twig'%}
+{% endblock %}
