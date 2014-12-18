@@ -12,7 +12,7 @@ body{
     position: fixed;
     top: 0;
     width: 90%;
-    background: black url(../Image/Banniere4.jpg) no-repeat center center;
+    background: black url(../Image/Banniere.jpg) no-repeat center center;
     height: 174px;
     z-index: 100;
     text-align: center;
