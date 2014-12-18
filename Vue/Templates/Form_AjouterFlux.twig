@@ -1,0 +1,9 @@
+{% if isAdmin == true %}
+    <div class="admin_addFlux">
+        <h3>Ajouter un flux</h3>
+        <form action="." method="post" class="form_addFlux">
+            <input type="text" name="url" required="required" placeholder="Lien du flux RSS"/>
+            <input type="submit" value="ajouter" />
+        </form>
+    </div>
+{% endif %}

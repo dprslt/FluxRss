@@ -5,13 +5,25 @@
  * @author Charlotte DELAIN, Théo DEPRESLE
  */
 
+namespace utilitaires;
+
+use DateTime;
+use Exception;
+use metier\Flux;
+
 class XMLParser {
     private $path;
     private $result;
 
-    public function __construct($path)
+    public function __construct($flux)
     {
-        $this -> path = $path;
+        if(!($flux instanceof Flux)){
+            throw new Exception("XMLParser construct : Flux Invalide");
+        }
+        var_dump($flux);
+        $this->flux = $flux;
+        $this -> path = $flux->getPath();
+        echo $this->path.'<br/>';
     }
 
     public function getResult() {
@@ -38,7 +50,7 @@ class XMLParser {
             die("could not open XML input");
         }
 
-        $this->flux = new Flux($this->path);
+
 
         while ($data = fread($fp, 4096)) {
             if (!xml_parse($xml_parser, $data, feof($fp))) {
@@ -56,40 +68,58 @@ class XMLParser {
 
     private $item ;
 
-    private $title = false;
-    private $image = false;
-    private $url = false;
-    private $description = false;
-    private $link = false;
-    private $date = false;
+    private $b_title = false;
+    private $b_url = false;
+    private $b_link = false;
+    private $b_description = false;
+    private $b_guid = false;
+    private $b_date = false;
 
-    private $items = array();
+    private $b_item = false;
+    private $b_image = false;
+
+    private $id = 0;
+    private $title;
+    private $url;
+    private $guid;
+    private $description;
+    private $datePub;
+    private $dateAjout;
+
+
+    private $link;
+    private $img_link;
+    private $img_url;
+    private $img_title;
+
 
 
     private function startElement($parser, $name, $attrs)
     {
-        printf($name.' - <br/>');
         switch($name){
             case "TITLE":
-                $this->title = true;
+                $this->b_title = true;
                 break;
             case "ITEM":
-                $this->item = new News();
+                $this->b_item = true;
                 break;
             case "IMAGE":
-                $this->image = true;
+                $this->b_image = true;
                 break;
             case "URL":
-                $this->url = true;
+                $this->b_url = true;
                 break;
             case "DESCRIPTION":
-                $this->description = true;
+                $this->b_description = true;
+                break;
+            case "GUID":
+                $this->b_guid = true;
                 break;
             case "LINK" :
-                $this->link = true;
+                $this->b_link = true;
                 break;
             case "PUBDATE":
-                $this->date = true;
+                $this->b_date = true;
                 break;
         }
     }
@@ -97,33 +127,40 @@ class XMLParser {
 
     private function endElement($parser, $name)
     {
-       if($name == "ITEM")
-       {
-            $this->items[] = $this->item;
-            return;
-       }
-
         switch($name){
+            case "ITEM":
+                $bd = new \utilitaires\PersistanceBD();
+                $bd->ajouterNews(new \metier\News(0,$this->flux->getId(),$this->title,$this->link,$this->guid,$this->description,$this->datePub,date('Y-m-d H:i:s')));
+                unset($this->description,$this->title,$this->link,$this->guid,$this->datePub,$this->dateAjout);
+                $this->b_item = false;
+                return;
+            case "IMAGE":
+                $this->flux->setImageLink($this->img_link);
+                $this->flux->setImageTitre($this->img_title);
+                $this->flux->setImageUrl($this->img_url);
+                unset($this->img_title,$this->img_link,$this->img_url);
+                $this->b_image = false;
+                return;
             case "TITLE":
-                $this->title = false;
+                $this->b_title = false;
                 break;
             case "IMAGE":
-                $this->image = false;
+                $this->b_image = false;
                 break;
             case "URL":
-                $this->url = false;
+                $this->b_url = false;
                 break;
             case "DESCRIPTION":
-                $this->description = false;
+                $this->b_description = false;
+                break;
+            case "GUID":
+                $this->b_guid = false;
                 break;
             case "LINK" :
-                $this->link = false;
-                break;
-            case "CHANNEL":
-                $this->flux->setNews($this->items);
+                $this->b_link = false;
                 break;
             case "PUBDATE":
-                $this->date = false;
+                $this->b_date = false;
                 break;
         }
 
@@ -131,17 +168,19 @@ class XMLParser {
 
     private function characterData($parser, $data)
     {
-        //On doit concatener les data avant de les enregistrer.
-        if($this->item != null){
-            if($this->title){$this->item->setTitle($this->item->getTitle().$data);}
-            if($this->link){$this->item->setLink($this->item->getLink().$data);}
-            if($this->description){$this->item->setDescription($this->item->getDescription().$data);}
-            if($this->date){$this->item->setPubDate($this->item->getPubDate().$data);}
+        if($this->b_item){
+            if($this->b_title) $this->title = $this->title.$data;
+            if($this->b_description) $this->description =  $this->description.$data;
+            if($this->b_link) $this->link = $this->link.$data;
+            if($this->b_guid) $this->guid = $this->guid.$data;
+            if($this->b_date) $this->datePub = $this->datePub.$data;
+        }
+        elseif($this->b_image){
+            if($this->b_url) $this->img_url = $this->img_url.$data;
         }
         else{
-            if($this->title){$this->flux->setNom($data);}
-            if($this->description){$this->flux->setDescription($this->flux->getDescription().$data);}
+
         }
 
     }
-} 
+}

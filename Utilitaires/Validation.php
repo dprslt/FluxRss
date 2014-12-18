@@ -1,5 +1,8 @@
 <?php
 
+namespace utilitaires;
+use Exception;
+
 /**
  * Class Validation
  * @author Charlotte DELAIN, Théo DEPRESLE
@@ -60,7 +63,7 @@ class Validation {
     }
 
     public static function isNumPage($nb){
-        if(filter_var($nb,FILTER_VALIDATE_INT)){
+        if(!filter_var($nb,FILTER_VALIDATE_INT)){
             throw new Exception("Numero de page invalide.");
         }
     }

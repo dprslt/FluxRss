@@ -1,5 +1,6 @@
 <?php
 
+namespace metier;
 
 class News {
 
@@ -9,6 +10,15 @@ class News {
     private $description;
     private $datePub;
     private $dateAjout;
+    private $guid;
+
+    /**
+     * @return mixed
+     */
+    public function getGuid()
+    {
+        return $this->guid;
+    }
 
 
     private $flux;
@@ -95,31 +105,18 @@ class News {
     }
 
 
-    public static function newNews($id,$flux,$title,$description,$url,$datePub = "",$dateAjout = "today"){
+    public function __construct($id,$flux,$title,$url,$guid,$description,$datePub = "",$dateAjout = "today"){
+        $this->id = $id;
+        $this->flux = $flux;
+        $this->title = $title;
+        $this->url = $url;
+        $this->guid = $guid;
+        $this->description = $description;
         if($dateAjout == "today")
             $dateAjout = date("H:i d m Y");
-        $ne = new News($id,$title,$description,$flux);
-        $ne->setUrl($url);
-        if($datePub == ""){
-            $ne->setDatePub($dateAjout);
-        }
-        else
-            $ne->setDatePub($datePub);
-        $ne->setDateAjout($dateAjout);
 
-
-        return $ne;
-    }
-
-    public function __construct($id,$title,$description,$url,$flux){
-        $this->id = $id;
-        $this->title = $title;
-        $this->description = $description;
-		$this->url = $url;
-        if(!($flux instanceof Flux)){
-            throw new Exception("Flux invalide !");
-        }
-        $this->flux = $flux;
+        $this->setDatePub($datePub);
+        $this->setDateAjout($dateAjout);
     }
 
 } 

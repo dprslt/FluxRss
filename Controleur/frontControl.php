@@ -5,38 +5,51 @@
  * Date: 10/12/2014
  * Time: 21:30
  */
+namespace controleur;
+use config\SplClassLoader;
+use controleur\adminControl;
+use controleur\userControl;
 
-class frontControler{
+require_once(__DIR__ ."/../Config/config.php");
+
+class frontControl{
+
 
     public function __construct()
     {
-        require_once(__DIR__ . "/../Config/config.php");
+
         global $path;
+
         require_once ($path."Config/spLClassLoader.php");
 
-        $myAutoLoader = new SplClassLoader("Config",$path);
+
+        $myAutoLoader = new SplClassLoader("config",$path);
         $myAutoLoader->register();
-        $myAutoLoader = new SplClassLoader("Controleur", $path);
+        $myAutoLoader = new SplClassLoader("controleur", $path);
         $myAutoLoader->register();
-        $myAutoLoader = new SplClassLoader("Metier",$path);
+        $myAutoLoader = new SplClassLoader("metier",$path);
         $myAutoLoader->register();
-        $myAutoLoader = new SplClassLoader("Modele",$path);
+        $myAutoLoader = new SplClassLoader("modele",$path);
         $myAutoLoader->register();
-        $myAutoLoader = new SplClassLoader("Utilitaires",$path);
+        $myAutoLoader = new SplClassLoader("utilitaires",$path);
         $myAutoLoader->register();
+        $myAutoLoader = new SplClassLoader("Twig",$path."lib/");
+        $myAutoLoader->setNamespaceSeparator("_");
+        $myAutoLoader->register();
+
 
         switch($_REQUEST['action']){
             case 'afficherNews':
             case 'afficherFluxs':
-            case 'afficherNewsOf':
+            case 'afficherNewsDe':
             case null:
-                $userCtr = new UserControler();
+                $userCtr = new userControl();
                 break;
 
             case 'ajouterFlux':
             case 'supprimerFlux':
             case 'modifierFlux':
-                $admin = new AdminControler();
+                $admin = new adminControl();
                 break;
         }
 

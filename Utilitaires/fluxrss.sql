@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `tnews` (
   `guid` varchar(1000) NOT NULL,
   `description` varchar(2000) NOT NULL,
   `datePub` varchar(200),
-  `dateAjout` date NOT NULL,
+  `dateAjout` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   KEY `flux` (`flux`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;

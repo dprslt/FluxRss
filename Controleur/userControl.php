@@ -6,18 +6,29 @@
  * Time: 17:06
  */
 
+namespace controleur;
+
+use Exception;
+use metier\Flux;
+use utilitaires\Validation;
+use modele\FluxModele;
+use modele\NewsModele;
+use utilitaires\XMLParser;
 
 
-class UserControler
+class userControl
 {
     public function __construct(){
         $tabErreur = array();
 
+
         try{
             switch ($_REQUEST['action']){
-
                 case null:
+                case 'afficherNews':
+                    $this->afficherNews();
                     break;
+
                 case "ajouterFlux":
                     $this->addFlux();
                     break;
@@ -25,6 +36,7 @@ class UserControler
         }
         catch (Exception $e){
             $tabErreur[] = $e->getMessage();
+            var_dump($tabErreur);
         }
     }
 
@@ -43,13 +55,21 @@ class UserControler
 
     function afficherNews()
     {
+        global $path, $vue;
         // 50 news par page
         $page = $_REQUEST['page'];
-        Validation::existe($page);
+        if(!isset($page))
+            $page = 1;
         Validation::isNumPage($page);
 
         $mod = new NewsModele();
-        $news = $mod->getPageNews($page);
+        $newstab = $mod->getPageNews($page);
+        $nbNews = $mod->getNbNews();
+
+        require($vue['affichageNews']);
+    }
+
+    function afficherNewsDuFlux(){
 
     }
 
