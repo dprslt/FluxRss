@@ -9,15 +9,18 @@
 namespace controleur;
 
 use Exception;
+use metier\Flux;
 use utilitaires\Validation;
 use modele\FluxModele;
 use modele\NewsModele;
+use utilitaires\XMLParser;
 
 
 class userControl
 {
     public function __construct(){
         $tabErreur = array();
+
 
         try{
             switch ($_REQUEST['action']){
@@ -52,6 +55,7 @@ class userControl
 
     function afficherNews()
     {
+        global $path, $vue;
         // 50 news par page
         $page = $_REQUEST['page'];
         if(!isset($page))
@@ -59,9 +63,14 @@ class userControl
         Validation::isNumPage($page);
 
         $mod = new NewsModele();
-        $news = $mod->getPageNews($page);
+        $newstab = $mod->getPageNews($page);
+        $nbNews = $mod->getNbNews();
 
-        var_dump($news);
+        require($vue['affichageNews']);
+    }
+
+    function afficherNewsDuFlux(){
+
     }
 
 }

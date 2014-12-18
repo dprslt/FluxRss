@@ -162,6 +162,7 @@ class Flux {
     public function __construct($id,$title,$path,$link,$description,$image_url,$image_titre,$image_link){
         $this->id = $id;
         $this->title = $title;
+        $this->path = $path;
         $this->link = $link;
         $this->description = $description;
         $this->image_url = $image_url;

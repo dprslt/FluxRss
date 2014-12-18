@@ -1,3 +1,5 @@
+
+
 {% macro News(id, titre, description,url, URLImage) %}
     <div class="center_news">
         {#{% if recent == false %}
@@ -6,7 +8,8 @@
             <div class="time_indicator_off"></div>
         {% endif %}#}
         <img src="{{ urlImage }}"/>
-        <p><a href="{{ url }}">{{ titre }}</a> ~ {{ description }}<p>
+        {# description|raw permet de recuperer le code html brut #}
+        <p><a href="{{ url }}">{{ titre }}</a> ~ {{ description|raw }}<p>
         {#<span> date </span>#}
     </div>
 {% endmacro %}
@@ -23,6 +26,5 @@
         <p>{{resume}}</p>
         {#<span> date </span>#}
     </div>
-        
         
 {% endmacro %}

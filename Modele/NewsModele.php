@@ -12,9 +12,22 @@ use \utilitaires\PersistanceBD;
 
 class NewsModele {
 
+    private $dal;
+
+    public function __construct(){
+        $this->dal = new PersistanceBD();
+    }
+
     public function getPageNews($page)
     {
-        $dal = new PersistanceBD();
-        return $dal->getNews($page);
+        return $this->dal->getNews($page);
+    }
+
+    public function getNbNews(){
+        return $this->dal->getNbNews();
+    }
+
+    public function getNewsFluc($fluxid){
+
     }
 }

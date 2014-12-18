@@ -22,7 +22,6 @@ class frontControl{
 
         require_once ($path."Config/spLClassLoader.php");
 
-        echo $path;
 
         $myAutoLoader = new SplClassLoader("config",$path);
         $myAutoLoader->register();
@@ -33,6 +32,9 @@ class frontControl{
         $myAutoLoader = new SplClassLoader("modele",$path);
         $myAutoLoader->register();
         $myAutoLoader = new SplClassLoader("utilitaires",$path);
+        $myAutoLoader->register();
+        $myAutoLoader = new SplClassLoader("Twig",$path."lib/");
+        $myAutoLoader->setNamespaceSeparator("_");
         $myAutoLoader->register();
 
 

@@ -10,4 +10,9 @@ $db_password = "";
 
 //TODO vue dans un tableau
 
+$vue = array(
+    'affichageNews' => $path.'Vue/VueNews2.php',
+);
+
+
 ?>
