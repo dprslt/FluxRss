@@ -9,6 +9,8 @@ namespace controleur;
 use config\SplClassLoader;
 use controleur\adminControl;
 use controleur\userControl;
+use metier\Flux;
+use utilitaires\XMLParser;
 
 require_once(__DIR__ ."/../Config/config.php");
 
@@ -36,6 +38,8 @@ class frontControl{
         $myAutoLoader = new SplClassLoader("Twig",$path."lib/");
         $myAutoLoader->setNamespaceSeparator("_");
         $myAutoLoader->register();
+
+
 
 
         switch($_REQUEST['action']){

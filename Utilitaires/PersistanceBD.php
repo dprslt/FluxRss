@@ -9,6 +9,7 @@
 namespace utilitaires;
 
 
+use metier\Flux;
 use metier\News;
 use PDO;
 use \utilitaires\Persistance;
@@ -22,6 +23,16 @@ class PersistanceBD extends Persistance {
             '1' => array($link, PDO::PARAM_STR),
         );
         $bd->requete("INSERT INTO `tflux`(path) VALUES (?)",$params);
+    }
+
+    public function authentifier($admin, $pass){
+        $bd = BD::getInstance();
+        $params = array(
+            '1' => array($admin, PDO::PARAM_STR),
+            '2' => array($pass, PDO::PARAM_STR)
+        );
+        $result = $bd->lecture("SELECT COUNT(*) AS nb FROM users WHERE login = ? AND pass = ?", $params);
+        return $result[0]['nb'];
     }
 
     public function enregistrerFlux($flux){
@@ -73,7 +84,6 @@ class PersistanceBD extends Persistance {
                             $news['datePub'],$news['dateAjout']
             );
         }
-
         return $tabNews;
     }
 
@@ -107,8 +117,8 @@ class PersistanceBD extends Persistance {
     public function getPageFluxs($page){
         $bd = BD::getInstance();
         $params = array(
-            '1' => array($page, PDO::PARAM_INT),
-            '2' => array(($page -1)*20, PDO::PARAM_INT),
+            '1' => array(($page-1)*20, PDO::PARAM_INT),
+            '2' => array(($page)*20, PDO::PARAM_INT),
         );
         $result = $bd->lecture("SELECT * FROM  `tflux` LIMIT ?, ?",$params);
         return $this->tabFluxFromRequest($result);

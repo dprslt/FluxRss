@@ -10,6 +10,9 @@ namespace controleur;
 
 use Exception;
 use metier\Flux;
+use Twig_Autoloader;
+use Twig_Environment;
+use Twig_Loader_Filesystem;
 use utilitaires\Validation;
 use modele\FluxModele;
 use modele\NewsModele;
@@ -40,19 +43,6 @@ class userControl
         }
     }
 
-    function addFlux()
-    {
-        Validation::existe($_REQUEST['link']);
-        Validation::existe($_REQUEST['name']);
-        Validation::URLValid($_REQUEST['link']);
-
-        $link = $_REQUEST['valid'];
-        $name = $_REQUEST['name'];
-
-        $fluxMod = new FluxModele();
-        $fluxMod->ajouterFlux($name, $link);
-    }
-
     function afficherNews()
     {
         global $path, $vue;
@@ -63,10 +53,26 @@ class userControl
         Validation::isNumPage($page);
 
         $mod = new NewsModele();
+        $fluxsMod = new FluxModele();
         $newstab = $mod->getPageNews($page);
         $nbNews = $mod->getNbNews();
+        $tabFlux = $fluxsMod->getPageFlux(1);
 
-        require($vue['affichageNews']);
+
+
+        Twig_Autoloader::register();
+        $loader = new Twig_Loader_Filesystem('Vue/Templates'); // Dossier contenant les templates
+        $twig = new Twig_Environment($loader, array(
+            'cache' => false
+        ));
+        $template = $twig->loadTemplate('pageAccueil.twig');
+        echo $template->render(array(
+            'News' => $newstab,
+            'Flux' => $tabFlux
+        ));
+
+
+        //require($vue['affichageNews']);
     }
 
     function afficherNewsDuFlux(){
