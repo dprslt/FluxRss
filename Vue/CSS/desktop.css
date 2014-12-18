@@ -11,20 +11,26 @@ body{
 .top_bar{
     position: fixed;
     top: 0;
-    width: 100%;
-    background: #454546;
-    height: 35px;
+    width: 90%;
+    background: black url(../Image/Banniere4.jpg) no-repeat center center;
+    height: 174px;
     z-index: 100;
+    text-align: center;
+    color: white;
+    border-radius: 0 0 10px 10px;
+    left:5%;
+    right:5%;
+    
 }
 
 .navig_bar{
     border-right: solid 1px #e6e6e6;
     position: fixed;
-    width: 200px;
+    width: 174px;
     height: 100%;
     top:0;
     background: #f5f5f5;
-    margin-top: 35px;
+    margin-top: 200px;
     text-align: center;
 }
 a:hover{
@@ -33,7 +39,7 @@ a:hover{
 
 .center_container{
     margin-left: 200px;
-    margin-top: 35px;
+    margin-top: 174px;
 }
 
 .center_newslist{
@@ -62,6 +68,10 @@ a:hover{
 }
 .center_news:hover a{
     color: #5c666d;
+}
+
+.news_descritption{
+    
 }
 
 .time_indicator_on{

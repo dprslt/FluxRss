@@ -1,13 +1,15 @@
-{% macro News(id, titre, description,url, URLImage) %}
+{% macro Flux(id, titre, URL, resume, image) %}
     <div class="center_news">
         {#{% if recent == false %}
             <div class="time_indicator_on"></div>
         {% else %}
             <div class="time_indicator_off"></div>
         {% endif %}#}
-        <img src="{{ urlImage }}"/>
-        <p><a href="{{ url }}">{{ titre }}</a> ~ {{ description }}<p>
+        <a href="{{URL}}">{{titre}}</a>
+        <img src="{{image}}"/>
+        <p>{{resume}}</p>
         {#<span> date </span>#}
     </div>
+        
+        
 {% endmacro %}
-
