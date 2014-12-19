@@ -11,10 +11,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de données: `fluxrss`
@@ -61,15 +57,20 @@ CREATE TABLE IF NOT EXISTS `tnews` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Contraintes pour les tables exportées
---
-
---
 -- Contraintes pour la table `tnews`
 --
 ALTER TABLE `tnews`
   ADD CONSTRAINT `FK_tflux_on_tnews` FOREIGN KEY (`flux`) REFERENCES `tflux` (`id`);
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `tAdmin`
+--
+
+CREATE TABLE IF NOT EXISTS `tAdmin` (
+  `login` varchar(50) NOT NULL,  
+  `mdp` varchar(50) NOT NULL,
+  PRIMARY KEY (`login`)
+);
