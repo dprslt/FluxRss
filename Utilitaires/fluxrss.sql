@@ -73,3 +73,15 @@ ALTER TABLE `tnews`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `tAdmin`
+--
+
+CREATE TABLE IF NOT EXISTS `tAdmin` (
+  `login` varchar(50) NOT NULL,  
+  `mdp` varchar(50) NOT NULL,
+  PRIMARY KEY (`login`),
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
