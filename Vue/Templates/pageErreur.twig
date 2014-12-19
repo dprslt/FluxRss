@@ -1,0 +1,7 @@
+{% extends 'menu.twig' %}
+
+{% block contenu %}
+{% for key, element in Erreur %}
+    <p>{{ element }}</p>
+{% endfor %}
+{% endblock %}

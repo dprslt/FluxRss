@@ -5,6 +5,8 @@
  * @author Charlotte DELAIN, Théo DEPRESLE
  */
 
+namespace utilitaires;
+
 class Boniche {
     public static function NettoyageBDD($var){
         filter_var($var,FILTER_SANITIZE_MAGIC_QUOTES);
@@ -17,11 +19,11 @@ class Boniche {
     }
     
     public static function NettoyageLOGIN($login){
-        filter_var($login, mysql_real_escape_string($login));
+        filter_var($login, mysqli::real_escape_string($login));
         return $login;
     }
     public static function NettoyageMDP($mdp){
-        filter_var($mdp,mysql_real_escape_string($mdp));
+        filter_var($mdp,mysqli::real_escape_string($mdp));
         return $mdp;
     }
 }
