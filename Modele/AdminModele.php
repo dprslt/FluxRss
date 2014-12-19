@@ -11,10 +11,10 @@ namespace modele;
 
 use utilitaires\PersistanceBD;
 use utilitaires\Boniche;
+use metier\Admin;
 
 class AdminModele {
-    public function __construct($role, $login){
-
+    public function __construct(){
     }
 
     public function isAdmin(){

@@ -11,6 +11,7 @@ use controleur\adminControl;
 use controleur\userControl;
 use metier\Flux;
 use utilitaires\XMLParser;
+use modele\AdminModele;
 
 require_once(__DIR__ ."/../Config/config.php");
 
@@ -39,23 +40,31 @@ class frontControl{
         $myAutoLoader->setNamespaceSeparator("_");
         $myAutoLoader->register();
 
-
-
-
-        switch($_REQUEST['action']){
-            case 'afficherNews':
-            case 'afficherFluxs':
-            case 'afficherNewsDe':
-            case null:
-                $userCtr = new userControl();
-                break;
-
-            case 'ajouterFlux':
-            case 'supprimerFlux':
-            case 'modifierFlux':
-                $admin = new adminControl();
-                break;
+        
+        try{
+            $action=$_POST['action'];
+            $TabAdmin=array('ajouterFlux', 'supprimerFlux', 'modifierFlux');
+            $a=AdminModele.isAdmin();
+            if(inArray($TabAdmin, $action)){
+                if($a==null){
+                    $_POST['action']="connecter";
+                    new userControl();
+                }
+                else{
+                    new adminControl();
+                }
+            }
+        } catch (Exception $ex) {
+            $TabErreur = array($ex->getMessage());
+            
+                echo $template->render(array(
+                        'Erreur' => $TabErreur
+                    ));           
         }
+        
+
+
+      
 
         //TODO Dispatcher entre les controleurs => switch sur la var action
 
