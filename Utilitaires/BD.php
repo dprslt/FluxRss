@@ -45,7 +45,7 @@ class BD {
     }
 
 
-    public function lecture($req, $params){
+    public function lecture($req, $params = array()){
        try{
             $requete = $this->pdo->prepare($req);
             $i=0;

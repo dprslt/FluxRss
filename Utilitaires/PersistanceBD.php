@@ -107,6 +107,8 @@ class PersistanceBD extends Persistance {
         return $tabNews;
     }
 
+
+
     public function getNbNews(){
         $bd = BD::getInstance();
         $result = $bd->lecture("SELECT COUNT(*) AS 'count' FROM `tnews` ",array());
@@ -134,7 +136,7 @@ class PersistanceBD extends Persistance {
     public function getFluxs()
     {
         $bd = BD::getInstance();
-        $result = $bd->lecture("SELECT * FROM  `tflux` LIMIT ?, ?", array());
+        $result = $bd->lecture("SELECT * FROM  `tflux`", array());
         return $this->tabFluxFromRequest($result);
     }
 

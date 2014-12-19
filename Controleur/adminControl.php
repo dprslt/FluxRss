@@ -13,19 +13,22 @@ use utilitaires\Validation;
 
 class adminControl{
     public function __construct(){
-
+        global $path;
+        switch($_REQUEST['action']){
+            case 'rafraichirNews':
+                require($path.'refreshRSSContent.php');
+                break;
+        }
     }
 
     function addFlux()
     {
         Validation::existe($_REQUEST['link']);
-        Validation::existe($_REQUEST['name']);
         Validation::URLValid($_REQUEST['link']);
 
         $link = $_REQUEST['valid'];
-        $name = $_REQUEST['name'];
 
         $fluxMod = new FluxModele();
-        $fluxMod->ajouterFlux($name, $link);
+        $fluxMod->ajouterFlux($link);
     }
 }

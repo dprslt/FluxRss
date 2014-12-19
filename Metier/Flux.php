@@ -13,24 +13,6 @@ class Flux {
     private $image_titre;
     private $image_link;
 
-    private $news;
-
-    /**
-     * @return mixed
-     */
-    public function getNews()
-    {
-        return $this->news;
-    }
-
-    /**
-     * @param mixed $news
-     */
-    public function setNews($news)
-    {
-        $this->news = $news;
-    }
-
     /**
      * @param mixed $description
      */
@@ -168,6 +150,16 @@ class Flux {
         $this->image_url = $image_url;
         $this->image_titre = $image_titre;
         $this->image_link = $image_link;
+    }
+
+    public function viderFlux(){
+        $this->description = "";
+        $this->title = "";
+        $this->link = "";
+        $this->image_link = "";
+        $this->image_titre = "";
+        $this->image_url = "";
+
     }
 
 

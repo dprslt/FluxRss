@@ -20,7 +20,6 @@ class XMLParser {
         if(!($flux instanceof Flux)){
             throw new Exception("XMLParser construct : Flux Invalide");
         }
-        var_dump($flux);
         $this->flux = $flux;
         $this -> path = $flux->getPath();
         echo $this->path.'<br/>';
@@ -41,6 +40,7 @@ class XMLParser {
      */
     public function parse()
     {
+        $this->flux->viderFlux();
         ob_start();
         $xml_parser = xml_parser_create();
         xml_set_object($xml_parser, $this);
@@ -144,9 +144,6 @@ class XMLParser {
             case "TITLE":
                 $this->b_title = false;
                 break;
-            case "IMAGE":
-                $this->b_image = false;
-                break;
             case "URL":
                 $this->b_url = false;
                 break;
@@ -170,15 +167,22 @@ class XMLParser {
     {
         if($this->b_item){
             if($this->b_title) $this->title = $this->title.$data;
-            if($this->b_description) $this->description =  $this->description.$data;
+            if($this->b_description) $this->description = $this->description.$data;
             if($this->b_link) $this->link = $this->link.$data;
             if($this->b_guid) $this->guid = $this->guid.$data;
             if($this->b_date) $this->datePub = $this->datePub.$data;
         }
-        elseif($this->b_image){
-            if($this->b_url) $this->img_url = $this->img_url.$data;
-        }
-        else{
+        else if(!$this->b_item){
+            if(!$this->b_image){
+                if($this->b_title) $this->flux->setTitle($this->flux->getTitle().$data);
+                if($this->b_description) $this->flux->setDescription($this->flux->getDescription().$data);
+                if($this->b_link) $this->flux->setLink($this->flux->getLink().$data);
+            }
+            elseif($this->b_image) {
+                 if ($this->b_url) $this->img_url = $this->img_url . $data;
+                 if ($this->b_title) $this->img_title = $this->img_url . $data;
+                 if ($this->b_link) $this->img_link = $this->img_link . $data;
+            }
 
         }
 

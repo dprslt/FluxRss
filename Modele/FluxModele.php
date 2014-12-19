@@ -24,16 +24,17 @@ class FluxModele {
     }
 
     public function getListeFlux(){
-        return $this->dal->getToutFluxs();
+        return $this->dal->getFluxs();
     }
 
+    public function saveFlux($flux){
+        $this->dal->enregistrerFlux($flux);
+    }
 
-
-    public function ajouterFlux($name, $link){
+    public function ajouterFlux($link){
         Boniche::NettoyageURL($link);
         Boniche::NettoyageBDD($link);
-        Boniche::NettoyageBDD($name);
 
-        $this->dal->ajouterFlux($name,$link);
+        $this->dal->ajouterNouveauFlux($link);
     }
 } 

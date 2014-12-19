@@ -53,6 +53,7 @@ class frontControl{
             case 'ajouterFlux':
             case 'supprimerFlux':
             case 'modifierFlux':
+            case 'rafraichirNews':
                 $admin = new adminControl();
                 break;
         }
