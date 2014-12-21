@@ -11,6 +11,11 @@ use controleur\adminControl;
 use controleur\userControl;
 use metier\Flux;
 use utilitaires\XMLParser;
+use modele\AdminModele;
+use Exception;
+use Twig_Autoloader;
+use Twig_Environment;
+use Twig_Loader_Filesystem;
 
 require_once(__DIR__ ."/../Config/config.php");
 
@@ -38,25 +43,39 @@ class frontControl{
         $myAutoLoader = new SplClassLoader("Twig",$path."lib/");
         $myAutoLoader->setNamespaceSeparator("_");
         $myAutoLoader->register();
+        
+        $loader = new Twig_Loader_Filesystem('Vue/Templates'); // Dossier contenant les templates
+        $twig = new Twig_Environment($loader, array(
+            'cache' => false
+        ));
 
+        $template = $twig->loadTemplate('pageErreur.twig');
 
-
-
-        switch($_REQUEST['action']){
-            case 'afficherNews':
-            case 'afficherFlux':
-            case 'afficherNewsDe':
-            case null:
-                $userCtr = new userControl();
-                break;
-
-            case 'ajouterFlux':
-            case 'supprimerFlux':
-            case 'modifierFlux':
-            case 'rafraichirNews':
-                $admin = new adminControl();
-                break;
+        
+        try{
+            $action=$_POST['action'];
+            $TabAdmin=array('ajouterFlux', 'supprimerFlux', 'modifierFlux');
+            $adminModele = new AdminModele();
+            $a=$adminModele->isAdmin();
+            if(inArray($TabAdmin, $action)){
+                if($a==null){
+                    $_POST['action']="connecter";
+                    new userControl();
+                }
+                else{
+                    new adminControl();
+                }
+            }
+        } catch (Exception $ex) {
+            $TabErreur = array($ex->getMessage());
+            
+                echo $template->render(array(
+                        'Erreur' => $TabErreur
+                    ));           
         }
+        
+
+
       
 
         //TODO Dispatcher entre les controleurs => switch sur la var action
