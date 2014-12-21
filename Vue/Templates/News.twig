@@ -5,4 +5,7 @@
     {{ VueNew.News(element.id, element.title, element.description, element.url, element.flux.URLImage) }}
 {% endfor %}
 
-{# N° de pages #}
+{%  if numpage > 1  %}
+    <a href="?page={{ numpage-1 }}">Précédent</a>
+{% endif %}
+    <a href="?page={{ numpage+1 }}">Suivant</a>

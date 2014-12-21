@@ -57,7 +57,8 @@ class userControl
 
         echo $template->render(array(
             'News' => $newstab,
-            'Flux' => $tabFlux
+            'Flux' => $tabFlux,
+            'numpage' => $page
         ));
 
     }

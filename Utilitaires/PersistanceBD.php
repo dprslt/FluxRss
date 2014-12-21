@@ -72,10 +72,10 @@ class PersistanceBD extends Persistance {
     {
         $bd = BD::getInstance();
         $params = array(
-            '1' => array($page-1, PDO::PARAM_INT),
+            '1' => array(($page-1)*50, PDO::PARAM_INT),
             '2' => array(50, PDO::PARAM_INT),
         );
-        $result = $bd->lecture("SELECT * FROM  `tnews` ORDER BY datePub LIMIT ?, ?",$params);
+        $result = $bd->lecture("SELECT * FROM  `tnews` ORDER BY datePub DESC LIMIT ?, ?",$params);
         $tabNews = array();
         foreach($result as $news){
             $tabNews[] = new News($news['id'],$news['flux'],

@@ -134,3 +134,15 @@ a:hover{
     background: #b9b8b9;
 }
 
+footer{
+    margin-left: 200px;
+    background: #3e3c3d;
+    color: #b9b8b9;
+    font-size: 12px;
+    text-align: center;
+    padding: 20px;
+}
+footer p{
+    line-height: 15px;
+}
+
