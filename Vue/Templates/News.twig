@@ -1,6 +1,8 @@
 {% import 'MacroNews.twig' as VueNew %}
 
-{% for key, element in News %}
+{% for element in News %}
     {#Appelle macro pour afficher toutes les News#}
     {{ VueNew.News(element.id, element.title, element.description, element.url, element.flux.URLImage) }}
 {% endfor %}
+
+{# N° de pages #}

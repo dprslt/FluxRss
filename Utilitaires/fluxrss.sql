@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `tnews` (
   `title` varchar(255) NOT NULL,
   `url` varchar(1000) NOT NULL,
   `guid` varchar(1000) NOT NULL,
-  `description` varchar(2000) NOT NULL,
+  `description` varchar(5000) NOT NULL,
   `datePub` varchar(200),
   `dateAjout` DATETIME NOT NULL,
   PRIMARY KEY (`id`),

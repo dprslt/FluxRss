@@ -130,7 +130,7 @@ class XMLParser {
         switch($name){
             case "ITEM":
                 $bd = new \utilitaires\PersistanceBD();
-                $bd->ajouterNews(new \metier\News(0,$this->flux->getId(),$this->title,$this->link,$this->guid,$this->description,$this->datePub,date('Y-m-d H:i:s')));
+                $bd->ajouterNews(new \metier\News(0,$this->flux->getId(),$this->title,$this->link,$this->guid,$this->close_tag_html($this->description),$this->datePub,date('Y-m-d H:i:s')));
                 unset($this->description,$this->title,$this->link,$this->guid,$this->datePub,$this->dateAjout);
                 $this->b_item = false;
                 return;
@@ -187,4 +187,30 @@ class XMLParser {
         }
 
     }
+
+    function close_tag_html($text) {
+        preg_match_all("/<[^>]*>/", $text, $bal);
+        $liste = array();
+        foreach($bal[0] as $balise) {
+            if ($balise{1} != "/") { // opening tag
+                preg_match("/<([a-z]+[0-9]*)/i", $balise, $type);
+                // add the tag
+                $liste[] = $type[1];
+              } else { // closing tag
+                preg_match("/<\/([a-z]+[0-9]*)/i", $balise, $type);
+                // strip tag
+                for ($i=count($liste)-1; $i>=0; $i--){
+                    if ($liste[$i] == $type[1])
+                                               $liste[$i] = "";
+                               }
+            }
+        }
+        $tags = '';
+        for ($i=count($liste)-1; $i>=0; $i--){
+            if ($liste[$i] != "" && $liste[$i] != "br") $tags .= '</'.$liste[$i].'>';
+        }
+        return($text.$tags);
+    }
+
+
 }

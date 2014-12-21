@@ -47,12 +47,14 @@ class userControl
         $nbNews = $this->newsModele->getNbNews();
         $tabFlux = $this->fluxModele->getPageFlux(1);
 
+
         Twig_Autoloader::register();
         $loader = new Twig_Loader_Filesystem('Vue/Templates');
         $twig = new Twig_Environment($loader, array(
             'cache' => false
         ));
         $template = $twig->loadTemplate('pageAccueil.twig');
+
         echo $template->render(array(
             'News' => $newstab,
             'Flux' => $tabFlux
