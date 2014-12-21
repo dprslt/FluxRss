@@ -1,16 +1,16 @@
-{% import 'MacroNews.twig' as VueFlux %}
+{% import 'MacroFlux.twig' as VueFlux %}
 
 <div class="center_newslist">
 {% for element in Flux %}
     {#Appelle macro pour afficher tous les Flux#}
-    {{ VueFlux.Flux(element.id, element.titre, element.URL, element.resume, element.image) }}
+    {{ VueFlux.Flux(element.id, element.title, element.link, element.description, element.image) }}
 {% endfor %}
 </div>
 
 
 <div class="page_navigation">
     {%  if numpage > 1  %}
-        <a href="?page={{ numpage-1 }}">Précédent</a> |
+        <a href="?action=afficherFlux&page={{ numpage-1 }}">Précédent</a> |
     {% endif %}
-    <a href="?page={{ numpage+1 }}">Suivant</a>
+    <a href="?action=afficherFlux&page={{ numpage+1 }}">Suivant</a>
 </div>
