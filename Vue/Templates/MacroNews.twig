@@ -2,20 +2,17 @@
 
 {# {% macro News(id, titre, description,url, URLImage, LinkImage, TitleImage) %} #}
 {% macro News(id, titre, description,url, URLImage, LinkImage, TitleImage) %}
+
     <div class="center_news">
-        <div class="news_content">
-            <div class="news_title">
-                <a href="{{ LinkImage }}" ><img src="{{ urlImage }}" class="fluxImage" title="{{ TitleImage }}"/></a>
-                {# description|raw permet de recuperer le code html brut #}
-                <a href="{{ url }}" target="_blank">{{ titre }}</a>
-            </div>
-            <div class="news_deroul" onclick="toogleHori('det{{ id }}')">
-                <img id="arr{{ id }}" src="Vue/Image/arrow.png" />
+        <div class="news_title">
+            <div class="news_flux_icon"></div>
+            <div class="news_link"><a href="{{ url }}" target="_blank">{{ titre }}</a></div>
+            <div class="news_deroul" onclick="toogleHori('det{{ id }}')"><img src="Vue/Image/arrow.png"/></div>
+        </div>
+        <div class="news_details hori_rollable"id="det{{ id }}" style="max-height: 0em">
+            <div class="news_description">
+                <p>{{ description|raw }}</p>
             </div>
         </div>
-            <div class="news_description hori_rollable" id="det{{ id }}" style="max-height: 0em"><p>{{ description|raw }}</p></div>
-            {#<span> date </span>#}
-
-
     </div>
 {% endmacro %}

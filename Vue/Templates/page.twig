@@ -4,12 +4,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="Vue/CSS/desktop.css"/>
     <script type="text/javascript" src="Vue/JS/hide.js"></script>
-    <title>{% block title %}Explorer le monde{% endblock %}</title>
+    <title>Explorer le monde{% block title %}{% endblock %}</title>
 </header>
 
     <body>
         <div class="top_bar" >
-            {% block banniere %}<h1>Explorer le monde</h1>{% endblock %}
+            {% block banniere %}
+                <div class="top_logo">
+                    <img src="Vue/Image/Globe.png" id="logo"/>
+                    <h1>Explorer le monde</h1>
+                </div>
+
+            {% endblock %}
         </div>
         <div class="navig_bar">
             {% block menu %}{% endblock %}

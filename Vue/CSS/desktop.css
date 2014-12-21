@@ -11,26 +11,43 @@ body{
 .top_bar{
     position: fixed;
     top: 0;
-    width: 90%;
-    background: black url(../Image/Banniere.jpg) no-repeat center center;
-    height: 174px;
+    width: 100%;
+    background: #3e3c3d no-repeat center;
+    background-size: cover;
+    height: 50px;
     z-index: 100;
-    text-align: center;
-    color: white;
-    border-radius: 0 0 10px 10px;
-    left:5%;
-    right:5%;
-    
+
+    border-bottom: solid 2px #7f8e96;
+}
+.top_bar h1{
+    color: #f5f5f5;
+    padding-top: 8px;
+    margin: 0;
+}
+.top_logo{
+    margin-left: 40px;
+}
+#logo{
+    filter: invert(1);
+    -webkit-filter: invert(1);
+    -moz-filter: invert(1);
+    -o-filter: invert(1);
+    -ms-filter: invert(1);
+
+    height: 40px;
+    margin-top: 5px ;
+    margin-right: 15px;
+    float: left;
 }
 
 .navig_bar{
     border-right: solid 1px #e6e6e6;
     position: fixed;
-    width: 174px;
+    width: 200px;
     height: 100%;
     top:0;
     background: #f5f5f5;
-    margin-top: 200px;
+    margin-top: 50px;
     text-align: center;
 }
 a:hover{
@@ -39,7 +56,7 @@ a:hover{
 
 .center_container{
     margin-left: 200px;
-    margin-top: 174px;
+    margin-top: 50px;
 }
 
 .center_newslist{
@@ -50,42 +67,50 @@ a:hover{
 .center_news{
     display: block;
     border-top: solid 1px #e8e8e8;
+}
+
+.news_title{display: table;width: 100%;table-layout: fixed }
+.news_link{
+    display: table-cell;
+    vertical-align: top;
+    text-overflow: ellipsis;
+    overflow: hidden;
     white-space: nowrap;
 }
+.news_flux_icon{display: table-cell;width: 30px;}
 
-.center_news:hover{
-    background: #f5f5f5;
-}
-
-.center_news a{
-    max-width: 100%;
+.news_link a{
     font-weight: bold;
     color: #7f8e96;
     text-decoration: none;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    line-height: 40px;
 }
-.center_news:hover a{
+.news_link:hover a{
     color: #5c666d;
 }
 
-.news_content{
-    padding: 10px;
-}
-
 .news_description{
-
+    border-top :solid 1px #e8e8e8 ;
+    margin: 0 30px 30px 20px;
+    padding: 10px;
+    text-align: justify;
+}
+.news_description img{margin: 10px;}
+.news_description a{
+    font-weight: bold;
+    color: #7f8e96;
+    text-decoration: none;
 }
 
 .news_deroul{
-    float: right;
+    display: table-cell;
+    vertical-align: middle;
+    width: 30px ;
     border-left: solid 1px #a8a8a8;
-    height: 100%;
 }
 .news_deroul img{
-    height: 25px;
+    width: 100%;
     display: block;
-    margin: auto auto;
     cursor: pointer;
 }
 
