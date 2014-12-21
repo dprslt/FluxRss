@@ -23,37 +23,39 @@ class userControl
     private $newsModele;
     private $fluxModele;
 
+    private $twig;
+
     public function __construct(){
         $this->newsModele = new NewsModele();
         $this->fluxModele = new FluxModele();
+
+        Twig_Autoloader::register();
+        $loader = new Twig_Loader_Filesystem('Vue/Templates');
+        $this->twig = new Twig_Environment($loader, array(
+            'cache' => false
+        ));
+
         switch ($_REQUEST['action']){
             case null:
             case 'afficherNews':
                 $this->afficherNews();
                 break;
-
+            case 'afficherFlux':
+                $this->afficherFluxs();
+                break;
         }
     }
 
     function afficherNews()
     {
         global $path, $vue;
-        $page = $_REQUEST['page'];
-        if(!isset($page))
-            $page = 1;
-        Validation::isNumPage($page);
+        $page = $this->getPage();
 
         $newstab = $this->newsModele->getPageNews($page);
         $nbNews = $this->newsModele->getNbNews();
         $tabFlux = $this->fluxModele->getPageFlux(1);
 
-
-        Twig_Autoloader::register();
-        $loader = new Twig_Loader_Filesystem('Vue/Templates');
-        $twig = new Twig_Environment($loader, array(
-            'cache' => false
-        ));
-        $template = $twig->loadTemplate('pageAccueil.twig');
+        $template = $this->twig->loadTemplate('pageAccueil.twig');
 
         echo $template->render(array(
             'News' => $newstab,
@@ -65,6 +67,28 @@ class userControl
 
     function afficherNewsDuFlux(){
 
+    }
+
+    private function afficherFluxs()
+    {
+        global $path;
+        $page = $this->getPage();
+        $fluxs = $this->fluxModele->getPageFlux($page);
+
+        $template = $this->twig->loadTemplate('pageListeFlux.twig');
+        echo $template->render(array(
+           'Flux' => $fluxs,
+            'numpage' => $page,
+        ));
+    }
+
+
+    private function getPage(){
+        $page = $_REQUEST['page'];
+        if(!isset($page))
+            $page = 1;
+        Validation::isNumPage($page);
+        return $page;
     }
 
 }

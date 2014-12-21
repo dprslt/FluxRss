@@ -9,10 +9,15 @@ function showHori($val){
     var item = document.getElementById($val);
     item.style.maxHeight = '99em';
 }
-function toogleHori($val){
+function toogleNews($val,$img){
+    var img = document.getElementById($img);
     var item = document.getElementById($val);
-    if(item.style.maxHeight == "0em")
+    if(item.style.maxHeight == "0em"){
         item.style.maxHeight = '99em';
-    else
+        img.style.transform = 'rotate(180deg)';
+    }
+    else {
         item.style.maxHeight = '0em';
+        img.style.transform = 'rotate(0deg)';
+    }
 }

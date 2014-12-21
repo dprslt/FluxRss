@@ -10,20 +10,23 @@
 
     <body>
         <div class="top_bar" >
-            {% block banniere %}
                 <div class="top_logo">
                     <a href="."><img src="Vue/Image/Globe.png" id="logo"/></a>
                     <h1>Explorer le monde</h1>
                 </div>
+        </div>
 
-            {% endblock %}
+        <!-- Content -->
+        <div class="container">
+            <div class="navig_bar">
+                {% block menu %}{% endblock %}
+            </div>
+            <div class="center_container">
+                {% block contenu %}{% endblock %}
+            </div>
         </div>
-        <div class="navig_bar">
-            {% block menu %}{% endblock %}
-        </div>
-        <div class="center_container">
-            {% block contenu %}{% endblock %}
-        </div>
+
+        <!-- Footer -->
         <footer>
             <div>
                 <p>

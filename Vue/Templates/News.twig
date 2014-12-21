@@ -1,11 +1,15 @@
 {% import 'MacroNews.twig' as VueNew %}
 
-{% for element in News %}
-    {#Appelle macro pour afficher toutes les News#}
-    {{ VueNew.News(element.id, element.title, element.description, element.url, element.flux.URLImage) }}
-{% endfor %}
+<div class="center_newslist">
+    {% for element in News %}
+        {#Appelle macro pour afficher toutes les News#}
+        {{ VueNew.News(element.id, element.title, element.description, element.url, element.flux.URLImage) }}
+    {% endfor %}
+</div>
 
-{%  if numpage > 1  %}
-    <a href="?page={{ numpage-1 }}">Précédent</a>
-{% endif %}
+<div class="page_navigation">
+    {%  if numpage > 1  %}
+        <a href="?page={{ numpage-1 }}">Précédent</a> |
+    {% endif %}
     <a href="?page={{ numpage+1 }}">Suivant</a>
+</div>

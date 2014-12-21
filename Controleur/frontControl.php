@@ -44,7 +44,7 @@ class frontControl{
 
         switch($_REQUEST['action']){
             case 'afficherNews':
-            case 'afficherFluxs':
+            case 'afficherFlux':
             case 'afficherNewsDe':
             case null:
                 $userCtr = new userControl();
