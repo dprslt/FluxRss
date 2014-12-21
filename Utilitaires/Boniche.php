@@ -7,6 +7,8 @@
 
 namespace utilitaires;
 
+use PDO;
+
 class Boniche {
     public static function NettoyageBDD($var){
         filter_var($var,FILTER_SANITIZE_MAGIC_QUOTES);
@@ -19,11 +21,11 @@ class Boniche {
     }
     
     public static function NettoyageLOGIN($login){
-        filter_var($login, mysqli::real_escape_string($login));
+        filter_var($login, FILTER_SANITIZE_STRING);
         return $login;
     }
     public static function NettoyageMDP($mdp){
-        filter_var($mdp,mysqli::real_escape_string($mdp));
+        filter_var($mdp, FILTER_SANITIZE_STRING);
         return $mdp;
     }
 }

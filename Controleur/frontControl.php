@@ -57,7 +57,7 @@ class frontControl{
             $TabAdmin=array('ajouterFlux', 'supprimerFlux', 'modifierFlux');
             $adminModele = new AdminModele();
             $a=$adminModele->isAdmin();
-            if(inArray($TabAdmin, $action)){
+            if(in_array($action, $TabAdmin)){
                 if($a==null){
                     $_POST['action']="connecter";
                     new userControl();
@@ -65,6 +65,9 @@ class frontControl{
                 else{
                     new adminControl();
                 }
+            }
+            else{
+                new userControl();
             }
         } catch (Exception $ex) {
             $TabErreur = array($ex->getMessage());
