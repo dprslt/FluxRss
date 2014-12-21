@@ -8,8 +8,7 @@
 
 namespace controleur;
 
-use Exception;
-use metier\Flux;
+
 use Twig_Autoloader;
 use Twig_Environment;
 use Twig_Loader_Filesystem;
@@ -21,47 +20,35 @@ use utilitaires\XMLParser;
 
 class userControl
 {
+    private $newsModele;
+    private $fluxModele;
+
     public function __construct(){
-        $tabErreur = array();
+        $this->newsModele = new NewsModele();
+        $this->fluxModele = new FluxModele();
+        switch ($_REQUEST['action']){
+            case null:
+            case 'afficherNews':
+                $this->afficherNews();
+                break;
 
-
-        try{
-            switch ($_REQUEST['action']){
-                case null:
-                case 'afficherNews':
-                    $this->afficherNews();
-                    break;
-
-                case "ajouterFlux":
-                    $this->addFlux();
-                    break;
-            }
-        }
-        catch (Exception $e){
-            $tabErreur[] = $e->getMessage();
-            var_dump($tabErreur);
         }
     }
 
     function afficherNews()
     {
         global $path, $vue;
-        // 50 news par page
         $page = $_REQUEST['page'];
         if(!isset($page))
             $page = 1;
         Validation::isNumPage($page);
 
-        $mod = new NewsModele();
-        $fluxsMod = new FluxModele();
-        $newstab = $mod->getPageNews($page);
-        $nbNews = $mod->getNbNews();
-        $tabFlux = $fluxsMod->getPageFlux(1);
-
-
+        $newstab = $this->newsModele->getPageNews($page);
+        $nbNews = $this->newsModele->getNbNews();
+        $tabFlux = $this->fluxModele->getPageFlux(1);
 
         Twig_Autoloader::register();
-        $loader = new Twig_Loader_Filesystem('Vue/Templates'); // Dossier contenant les templates
+        $loader = new Twig_Loader_Filesystem('Vue/Templates');
         $twig = new Twig_Environment($loader, array(
             'cache' => false
         ));
@@ -71,8 +58,6 @@ class userControl
             'Flux' => $tabFlux
         ));
 
-
-        //require($vue['affichageNews']);
     }
 
     function afficherNewsDuFlux(){

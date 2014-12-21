@@ -18,4 +18,5 @@ abstract class  Persistance {
     public abstract function getNbNews();
     public abstract function getNewsFlux($flux);
     public abstract function getNews($page);
+    public abstract function viderNews();
 } 

@@ -1,6 +1,6 @@
 .hori_rollable{
     overflow-y: hidden;
-    transition: max-height 2s ;
+    transition: max-height 1s ;
 }
 
 body{
@@ -49,7 +49,6 @@ a:hover{
 
 .center_news{
     display: block;
-    padding: 10px;
     border-top: solid 1px #e8e8e8;
     white-space: nowrap;
 }
@@ -70,9 +69,27 @@ a:hover{
     color: #5c666d;
 }
 
-.news_descritption{
-    
+.news_content{
+    padding: 10px;
 }
+
+.news_description{
+
+}
+
+.news_deroul{
+    float: right;
+    border-left: solid 1px #a8a8a8;
+    height: 100%;
+}
+.news_deroul img{
+    height: 25px;
+    display: block;
+    margin: auto auto;
+    cursor: pointer;
+}
+
+
 
 .time_indicator_on{
     display: inline-block;
