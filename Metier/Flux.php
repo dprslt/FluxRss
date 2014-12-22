@@ -4,7 +4,7 @@ namespace metier;
 
 class Flux {
     private $id;
-    private $title;
+    public  $title;
     private $path;
     private $link;
     private $description;

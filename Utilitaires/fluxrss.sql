@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `tflux` (
   `title` varchar(200) NOT NULL,  
   `path` varchar(500) NOT NULL,
   `link` varchar(1000) NOT NULL,
-  `descripton` varchar(2000) NOT NULL,
+  `description` varchar(2000) NOT NULL,
   `image_url` varchar(1000),
   `image_titre` varchar(1000),
   `image_link` varchar(1000),

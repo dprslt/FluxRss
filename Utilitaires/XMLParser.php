@@ -167,7 +167,7 @@ class XMLParser {
     {
         if($this->b_item){
             if($this->b_title) $this->title = $this->title.$data;
-            if($this->b_description) $this->description = $this->description.$data;
+            if($this->b_description) { $this->description = $this->description.$data; echo $data; }
             if($this->b_link) $this->link = $this->link.$data;
             if($this->b_guid) $this->guid = $this->guid.$data;
             if($this->b_date) $this->datePub = $this->datePub.$data;

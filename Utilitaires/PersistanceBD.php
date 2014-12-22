@@ -47,7 +47,7 @@ class PersistanceBD extends Persistance {
             '7' => array($flux->getImageLink(), PDO::PARAM_STR),
             '8' => array($flux->getId(), PDO::PARAM_INT)
         );
-        $bd->requete("UPDATE `tflux` SET `title`=?,`path`=?,`link`=?,`descripton`=?,`image_url`=?,`image_titre`=?,`image_link`=? WHERE `id`= ?",$params);
+        $bd->requete("UPDATE `tflux` SET `title`=?,`path`=?,`link`=?,`description`=?,`image_url`=?,`image_titre`=?,`image_link`=? WHERE `id`= ?",$params);
     }
 
     public function ajouterNews($news){
@@ -75,7 +75,7 @@ class PersistanceBD extends Persistance {
             '1' => array(($page-1)*50, PDO::PARAM_INT),
             '2' => array(50, PDO::PARAM_INT),
         );
-        $result = $bd->lecture("SELECT * FROM  `tnews` ORDER BY datePub DESC LIMIT ?, ?",$params);
+        $result = $bd->lecture("SELECT * FROM `tnews` ORDER BY datePub DESC LIMIT ?, ?",$params);
         $tabNews = array();
         foreach($result as $news){
             $tabNews[] = new News($news['id'],$news['flux'],
@@ -107,8 +107,6 @@ class PersistanceBD extends Persistance {
         return $tabNews;
     }
 
-
-
     public function getNbNews(){
         $bd = BD::getInstance();
         $result = $bd->lecture("SELECT COUNT(*) AS 'count' FROM `tnews` ",array());
@@ -133,10 +131,14 @@ class PersistanceBD extends Persistance {
         return $result[0]['count'];
     }
 
-    public function getFluxs()
+    public function getFluxsById($id)
     {
         $bd = BD::getInstance();
-        $result = $bd->lecture("SELECT * FROM  `tflux`", array());
+        Validation::isNumber($id);
+        $params = array(
+            '1' => array($id, PDO::PARAM_INT),
+        );
+        $result = $bd->lecture("SELECT * FROM  `tflux` WHERE `id` = ?", $params);
         return $this->tabFluxFromRequest($result);
     }
 
@@ -144,9 +146,6 @@ class PersistanceBD extends Persistance {
         $bd = BD::getInstance();
         $bd->requete("DELETE FROM `tnews`",array());
     }
-
-
-
 
 
     /*----- Private -----*/

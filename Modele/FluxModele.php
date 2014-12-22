@@ -8,7 +8,7 @@
 
 namespace modele;
 
-use Boniche;
+use utilitaires\Boniche;
 use utilitaires\PersistanceBD;
 
 class FluxModele {
@@ -23,8 +23,8 @@ class FluxModele {
         return $this->dal->getPageFluxs($page);
     }
 
-    public function getListeFlux(){
-        return $this->dal->getFluxs();
+    public function getFluxById($id){
+        return $this->dal->getFluxsById($id);
     }
 
     public function saveFlux($flux){
@@ -37,4 +37,6 @@ class FluxModele {
 
         $this->dal->ajouterNouveauFlux($link);
     }
+
+
 } 

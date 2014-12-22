@@ -43,6 +43,8 @@ class userControl
             case 'afficherFlux':
                 $this->afficherFluxs();
                 break;
+            case 'afficherNewsDe':
+                $this->afficherNewsDuFlux();
         }
     }
 
@@ -66,6 +68,18 @@ class userControl
     }
 
     function afficherNewsDuFlux(){
+        $fluxid = $_REQUEST['flux'];
+        Validation::existe($fluxid);
+        Validation::isNumber($fluxid);
+
+        $flux = $this->fluxModele->getFluxById($fluxid);
+        $news = $this->newsModele->getNewsFlux($fluxid);
+
+        $template = $this->twig->loadTemplate('pageNewsDeFlux.twig');
+        echo $template->render(array(
+            'Flux' => $flux[1],
+            'News' => $news,
+        ));
 
     }
 
@@ -74,10 +88,9 @@ class userControl
         global $path;
         $page = $this->getPage();
         $fluxs = $this->fluxModele->getPageFlux($page);
-
         $template = $this->twig->loadTemplate('pageListeFlux.twig');
         echo $template->render(array(
-           'Flux' => $fluxs,
+            'Flux' => $fluxs,
             'numpage' => $page,
         ));
     }
@@ -87,7 +100,7 @@ class userControl
         $page = $_REQUEST['page'];
         if(!isset($page))
             $page = 1;
-        Validation::isNumPage($page);
+        Validation::isNumber($page);
         return $page;
     }
 

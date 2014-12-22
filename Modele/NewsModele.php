@@ -28,7 +28,7 @@ class NewsModele {
     }
 
     public function getNewsFlux($fluxid){
-
+        return $this->dal->getNewsFlux($fluxid);
     }
 
     public function viderBase(){

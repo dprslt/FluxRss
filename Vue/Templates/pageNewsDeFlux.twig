@@ -1,9 +1,24 @@
+{% import 'MacroFlux.twig' as fluxmacr %}
+{% import 'MacroNews.twig' as VueNew %}
+
 {% extends 'menu.twig' %}
-{%import 'MacroFlux.twig' as appelMacro%}
-{% block banniere %}Explorer le monde{% endblock %}
-{% block title %} - Le flux et ses news{% endblock %}
+{% block title %} - {{ Flux.titre }}{% endblock %}
 
 {% block contenu %}
-   {% appelMacro.Flux(id, titre, URL, resume, image)%}
-   {%include 'News.twig'%}
+    {{ fluxmacr.Flux(Flux.id, Flux.title, Flux.link, Flux.description, Flux.image) }}
+
+    <div class="center_newslist">
+        {% for element in News %}
+            {#Appelle macro pour afficher toutes les News#}
+            {{ VueNew.News(element.id, element.title, element.description, element.url, element.flux.URLImage) }}
+        {% endfor %}
+    </div>
+
+    <div class="page_navigation">
+        {%  if numpage > 1  %}
+            <a href="?action=afficherNewsDe&flux={{ Flux.id }}&page={{ numpage-1 }}">Précédent</a> |
+        {% endif %}
+        <a href="?action=afficherNewsDe&flux={{ Flux.id }}&page={{ numpage+1 }}">Suivant</a>
+    </div>
+
 {% endblock %}
