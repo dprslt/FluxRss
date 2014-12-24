@@ -87,13 +87,15 @@ class PersistanceBD extends Persistance {
         return $tabNews;
     }
 
-    public function getNewsFlux($flux)
+    public function getNewsFlux($flux,$page)
     {
         $bd = BD::getInstance();
         $params = array(
-          '1' => array($flux, PDO::PARAM_INT)
+            '1' => array($flux, PDO::PARAM_INT),
+            '2' => array(($page-1)*50, PDO::PARAM_INT),
+            '3' => array(50, PDO::PARAM_INT),
         );
-        $result = $bd->lecture("SELECT * FROM `tnews` WHERE flux = ?", $params);
+        $result = $bd->lecture("SELECT * FROM `tnews` WHERE flux = ? ORDER BY datePub DESC LIMIT ?, ?", $params);
         
         $tabNews = array();
         foreach($result as $news){

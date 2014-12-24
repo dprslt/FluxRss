@@ -72,14 +72,17 @@ class userControl
         Validation::existe($fluxid);
         Validation::isNumber($fluxid);
 
+        $page = $this->getPage();
+
         $flux = $this->fluxModele->getFluxById($fluxid);
-        $news = $this->newsModele->getNewsFlux($fluxid);
+        $news = $this->newsModele->getNewsFlux($fluxid,$page);
 
         $template = $this->twig->loadTemplate('pageNewsDeFlux.twig');
 
         echo $template->render(array(
             'Flux' => $flux[0],
             'News' => $news,
+            'numpage' => $page,
         ));
 
     }
