@@ -24,7 +24,7 @@ class FluxModele {
     }
 
     public function getFluxById($id){
-        return $this->dal->getFluxsById($id);
+        return $this->dal->getFluxById($id);
     }
 
     public function getListFlux(){

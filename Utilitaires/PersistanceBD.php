@@ -131,7 +131,7 @@ class PersistanceBD extends Persistance {
         return $result[0]['count'];
     }
 
-    public function getFluxsById($id)
+    public function getFluxById($id)
     {
         $bd = BD::getInstance();
         Validation::isNumber($id);
@@ -139,7 +139,7 @@ class PersistanceBD extends Persistance {
             '1' => array($id, PDO::PARAM_INT),
         );
         $result = $bd->lecture("SELECT * FROM  `tflux` WHERE `id` = ?", $params);
-        return $this->tabFluxFromRequest($result);
+        return $this->tabFluxFromRequest($result,false);
     }
 
     public function getListFlux(){
@@ -155,12 +155,17 @@ class PersistanceBD extends Persistance {
 
 
     /*----- Private -----*/
-    private function tabFluxFromRequest($tabResult) {
+    private function tabFluxFromRequest($tabResult,$index = true) {
         $tabFlux = array();
         foreach($tabResult as $flux){
-            $tabFlux[$flux['id']] = new Flux($flux['id'],$flux['title'],$flux['path'],$flux['link'],
-                $flux['description'],$flux['image_url'],
-                $flux['image_titre'],$flux['image_link']);
+            if($index)
+                $tabFlux[$flux['id']] = new Flux($flux['id'],$flux['title'],$flux['path'],$flux['link'],
+                    $flux['description'],$flux['image_url'],
+                    $flux['image_titre'],$flux['image_link']);
+            else
+                $tabFlux[] = new Flux($flux['id'],$flux['title'],$flux['path'],$flux['link'],
+                    $flux['description'],$flux['image_url'],
+                    $flux['image_titre'],$flux['image_link']);
         }
         return $tabFlux;
     }

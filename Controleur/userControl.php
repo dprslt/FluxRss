@@ -76,8 +76,9 @@ class userControl
         $news = $this->newsModele->getNewsFlux($fluxid);
 
         $template = $this->twig->loadTemplate('pageNewsDeFlux.twig');
+
         echo $template->render(array(
-            'Flux' => $flux[1],
+            'Flux' => $flux[0],
             'News' => $news,
         ));
 

@@ -5,7 +5,9 @@
 {% block title %} - {{ Flux.titre }}{% endblock %}
 
 {% block contenu %}
-    {{ fluxmacr.Flux(Flux.id, Flux.title, Flux.link, Flux.description, Flux.image) }}
+    <div class="center_newslist">
+        {{ fluxmacr.Flux(Flux.id, Flux.title, Flux.link, Flux.description, Flux.imageUrl, Flux.imageLink, Flux.imageTitre) }}
+    </div>
 
     <div class="center_newslist">
         {% for element in News %}
