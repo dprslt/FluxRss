@@ -3,7 +3,7 @@
 <div class="center_newslist">
 {% for element in Flux %}
     {#Appelle macro pour afficher tous les Flux#}
-    {{ VueFlux.Flux(element.id, element.title, element.link, element.description, element.image) }}
+    {{ VueFlux.Flux(element.id, element.title, element.link, element.description, element.imageUrl, element.imageLink, element.imageTitre) }}
 {% endfor %}
 </div>
 

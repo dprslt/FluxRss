@@ -93,8 +93,8 @@ class PersistanceBD extends Persistance {
         $params = array(
           '1' => array($flux, PDO::PARAM_INT)
         );
-        $result = $bd->lecture("SELECT COUNT(*) AS 'count' FROM `tnews` WHERE flux = ?", $params);
-
+        $result = $bd->lecture("SELECT * FROM `tnews` WHERE flux = ?", $params);
+        
         $tabNews = array();
         foreach($result as $news){
             $tabNews[] = new News($news['id'],$news['flux'],

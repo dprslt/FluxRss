@@ -1,9 +1,11 @@
-{% macro Flux(id, titre, URL, resume, image) %}
-    <div class="center_news">
-        <a href="{{URL}}">{{titre}}</a>
-        <img src="{{image}}"/>
-        <p>{{ resume }}</p>
+{% macro Flux(id, titre, URL, resume, imageurl, imageLien, imageTitle) %}
+    <div class="center_flux">
+        <div class="flux_image">
+            <a href="{{ imageLien }}"><img src="{{imageurl}}" title="{{ imageTitle }}"/></a>
+        </div>
+        <div class="flux_content">
+            <a href="{{URL}}"><h4>{{titre}}</h4></a>
+            <p>{{ resume }}</p>
+        </div>
     </div>
-        
-        
 {% endmacro %}
