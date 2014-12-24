@@ -142,6 +142,12 @@ class PersistanceBD extends Persistance {
         return $this->tabFluxFromRequest($result);
     }
 
+    public function getListFlux(){
+        $bd = BD::getInstance();
+        $result = $bd->lecture("SELECT * FROM  `tflux`", array());
+        return $this->tabFluxFromRequest($result);
+    }
+
     public function viderNews(){
         $bd = BD::getInstance();
         $bd->requete("DELETE FROM `tnews`",array());

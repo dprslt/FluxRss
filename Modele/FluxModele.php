@@ -27,6 +27,10 @@ class FluxModele {
         return $this->dal->getFluxsById($id);
     }
 
+    public function getListFlux(){
+        return $this->dal->getListFlux();
+    }
+
     public function saveFlux($flux){
         $this->dal->enregistrerFlux($flux);
     }

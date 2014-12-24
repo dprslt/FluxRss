@@ -9,7 +9,7 @@ use modele\FluxModele;
 use modele\NewsModele;
 
 $mod = new FluxModele();
-$fluxs = $mod->getListeFlux();
+$fluxs = $mod->getListFlux();
 
 $NewsModel = new NewsModele();
 $NewsModel->viderBase();
