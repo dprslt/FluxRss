@@ -55,7 +55,7 @@ class userControl
 
         $newstab = $this->newsModele->getPageNews($page);
         $nbNews = $this->newsModele->getNbNews();
-        $tabFlux = $this->fluxModele->getPageFlux(1);
+        $tabFlux = $this->fluxModele->getListFlux();
 
         $template = $this->twig->loadTemplate('pageAccueil.twig');
 
@@ -73,14 +73,13 @@ class userControl
         Validation::isNumber($fluxid);
 
         $page = $this->getPage();
-
-        $flux = $this->fluxModele->getFluxById($fluxid);
         $news = $this->newsModele->getNewsFlux($fluxid,$page);
+        $tabFlux = $this->fluxModele->getListFlux();
 
         $template = $this->twig->loadTemplate('pageNewsDeFlux.twig');
 
         echo $template->render(array(
-            'Flux' => $flux[0],
+            'Flux' => $tabFlux[$fluxid],
             'News' => $news,
             'numpage' => $page,
         ));
