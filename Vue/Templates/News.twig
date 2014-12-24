@@ -3,8 +3,7 @@
 <div class="center_newslist">
     {% for element in News %}
         {#Appelle macro pour afficher toutes les News#}
-        {# News(id, titre, description, url, flux, URLImage, TitleImage)  #}
-        {{ VueNew.News(element.id, element.title, element.description, element.url, element.flux, Flux[element.Flux].imageURL, Flux[element.Flux].imageTitre ) }}
+        {{ VueNew.News(element.id, element.title, element.description, element.url, element.flux, Fluxs[element.Flux].imageURL, Fluxs[element.Flux].imageTitre ) }}
     {% endfor %}
 </div>
 

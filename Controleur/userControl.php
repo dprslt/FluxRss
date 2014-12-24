@@ -61,7 +61,7 @@ class userControl
 
         echo $template->render(array(
             'News' => $newstab,
-            'Flux' => $tabFlux,
+            'Fluxs' => $tabFlux,
             'numpage' => $page
         ));
 
@@ -76,10 +76,16 @@ class userControl
         $news = $this->newsModele->getNewsFlux($fluxid,$page);
         $tabFlux = $this->fluxModele->getListFlux();
 
+        $flux = $tabFlux[$fluxid];
+        if($flux == null){
+
+        }
+
         $template = $this->twig->loadTemplate('pageNewsDeFlux.twig');
 
         echo $template->render(array(
-            'Flux' => $tabFlux[$fluxid],
+            'Fluxs' => $tabFlux,
+            'Flux' => $flux,
             'News' => $news,
             'numpage' => $page,
         ));
@@ -93,7 +99,7 @@ class userControl
         $fluxs = $this->fluxModele->getPageFlux($page);
         $template = $this->twig->loadTemplate('pageListeFlux.twig');
         echo $template->render(array(
-            'Flux' => $fluxs,
+            'Fluxs' => $fluxs,
             'numpage' => $page,
         ));
     }
