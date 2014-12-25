@@ -97,12 +97,16 @@ a:hover{
     padding: 10px 10px 10px 25px;
     margin: 0;
 }
+.flux_title{
+    display: block;
+}
 .flux_content a {text-decoration: none;}
 .flux_content h4{
     color: #7f8e96;
     margin-bottom: 0;
     margin-top: 5px;
     font-size: 20px;
+    display: inline-block;
 }
 
 
@@ -137,6 +141,7 @@ a:hover{
     background: #dedcdd;
     margin-right:30px ;
 }
+.news_details a{text-decoration: none;color: #7f8e96}
 
 .news_description{
     margin: 0 30px 30px 20px;

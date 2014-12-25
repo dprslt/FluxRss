@@ -1,10 +1,15 @@
-{% macro Flux(id, titre, URL, resume, imageurl, imageLien, imageTitle) %}
+{% macro Flux(id, titre, URL, resume, imageurl, imageLien, imageTitle, details, admin) %}
     <div class="center_flux">
         <div class="flux_image">
             <a href="{{ imageLien }}"><img src="{{imageurl}}" title="{{ imageTitle }}"/></a>
         </div>
         <div class="flux_content">
-            <a href="{{URL}}"><h4>{{titre}}</h4></a>
+            <div class="flux_title">
+                <a href="{{URL}}"><h4>{{titre}}</h4></a>
+                {% if details == true %}
+                    <span class="news_more"><a href="?action=afficherNewsDe&flux={{ id }}"> - Voir les actualités</a></span>
+                {%  endif %}
+            </div>
             <p>{{ resume }}</p>
         </div>
     </div>
