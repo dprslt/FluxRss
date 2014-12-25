@@ -60,8 +60,42 @@ a:hover{
     text-align: center;
 }
 
+.navig_bar h2{
+    text-align: left;
+    font-size: 20px;
+    padding-left: 40px;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    background-origin: border-box;
+    background: url("../Image/Globe.png") no-repeat 4px;
+    background-size: 30px;
+    border-bottom: solid 1px #d10309;
+    border-top: solid 1px #d10309;
+}
+
+.menu_ban{
+    width: 100%;
+    overflow: hidden;
+    max-height: 70px;
+}
+.menu_ban img{width: 100%}
+
+.menu_list_flux{
+    width: 90%;
+    margin: 0 auto;
+}
+.menu_list_flux p{
+    text-overflow: ellipsis;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+
 .center_container{
     display: table-cell;
+    vertical-align: top;
 }
 
 .center_newslist{
