@@ -7,7 +7,6 @@
 
 namespace utilitaires;
 
-use DateTime;
 use Exception;
 use metier\Flux;
 
@@ -180,7 +179,7 @@ class XMLParser {
             }
             elseif($this->b_image) {
                  if ($this->b_url) $this->img_url = $this->img_url . $data;
-                 if ($this->b_title) $this->img_title = $this->img_url . $data;
+                 if ($this->b_title) $this->img_title = $this->img_title . $data;
                  if ($this->b_link) $this->img_link = $this->img_link . $data;
             }
 
