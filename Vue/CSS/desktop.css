@@ -125,7 +125,7 @@ a:hover{
     white-space: nowrap;
 }
 .news_flux_icon{display: table-cell;width: 30px; vertical-align: middle;padding: 5px;}
-.news_flux_icon img{width: 100%;}
+.news_flux_icon img{width: 60%; border-radius: 50%;}
 
 .news_link a{
     font-weight: bold;

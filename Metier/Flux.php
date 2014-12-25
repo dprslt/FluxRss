@@ -2,6 +2,8 @@
 
 namespace metier;
 
+use utilitaires\Utils;
+
 class Flux {
     private $id;
     public  $title;
@@ -141,6 +143,16 @@ class Flux {
         return $this->title;
     }
 
+    private $favicon;
+
+    /**
+     * @return string
+     */
+    public function getFavicon()
+    {
+        return $this->favicon;
+    }
+
     public function __construct($id,$title,$path,$link,$description,$image_url,$image_titre,$image_link){
         $this->id = $id;
         $this->title = $title;
@@ -150,6 +162,8 @@ class Flux {
         $this->image_url = $image_url;
         $this->image_titre = $image_titre;
         $this->image_link = $image_link;
+
+        $this->favicon = Utils::get_favicon($this->link);
     }
 
     public function viderFlux(){
@@ -159,8 +173,9 @@ class Flux {
         $this->image_link = "";
         $this->image_titre = "";
         $this->image_url = "";
-
     }
+
+
 
 
 } 
