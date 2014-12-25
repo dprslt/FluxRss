@@ -8,7 +8,7 @@
                 <a href="{{ url }}" target="_blank">{{ titre }}</a>
                 <span class="news_more" onclick="toogleNews('det{{ id }}','but{{ id }}')"> - Détails</span>
             </div>
-            <div class="news_deroul" onclick="toogleNews('det{{ id }}','but{{ id }}')"><img id="but{{ id }}" src="Vue/Image/arrow.png"/></div>
+            <div id="deroul{{ id }}" class="news_deroul" onclick="toogleNews('det{{ id }}','but{{ id }}')"><img id="but{{ id }}" src="Vue/Image/arrow.png"/></div>
         </div>
         <div class="news_details hori_rollable"id="det{{ id }}" style="max-height: 0em">
             <div class="news_description">
