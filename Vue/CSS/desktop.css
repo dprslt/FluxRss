@@ -57,7 +57,6 @@ a:hover{
     top:0;
     background: #f5f5f5;
     margin-top: 50px;
-    text-align: center;
 }
 
 .navig_bar h2{
@@ -73,6 +72,7 @@ a:hover{
     background-size: 30px;
     border-bottom: solid 1px #d10309;
     border-top: solid 1px #d10309;
+    margin-bottom: 0;
 }
 
 .menu_ban{
@@ -81,17 +81,36 @@ a:hover{
     max-height: 70px;
 }
 .menu_ban img{width: 100%}
+.menu_action{
+    display: block;
+    padding: 10px 0px 10px 25px;
+    border-bottom: solid 1px #5c666d;
+    margin: 0;
+}
+.menu_action a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #d10309;
+}
+.menu_action:hover{background: #850606;}
+.menu_action:hover a{color:white}
 
 .menu_list_flux{
     width: 90%;
-    margin: 0 auto;
+    margin: 8px auto 0;
 }
-.menu_list_flux p{
+.menu_flux {
     text-overflow: ellipsis;
     display: block;
     width: 100%;
     overflow: hidden;
+    white-space: nowrap;
+
+    margin: 2px;
 }
+
+.menu_flux a{color: #d10309; text-decoration: none; text-align: center;font-weight: bold;font-size: 80%}
+.menu_flux img {border-radius: 50%; margin-right: 6px; height: 12px;display: inline-block}
 
 .center_container{
     display: table-cell;
