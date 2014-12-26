@@ -1,7 +1,11 @@
 {% import 'MacroNews.twig' as VueNew %}
 
 <div class="center_newslist">
-    <!-- <button onclick="clickOnAllButton()">Dérouler tout</button> -->
+    <div class="center_button_bar">
+        <button onclick="setNewsState(true)">Dérouler tout</button>
+        <button onclick="setNewsState(false)">Replier tout</button>
+    </div>
+
     {% for element in News %}
         {#Appelle macro pour afficher toutes les News#}
         {{ VueNew.News(element.id, element.title, element.description, element.url, element.flux, Fluxs[element.Flux].favicon, Fluxs[element.Flux].imageTitre ) }}

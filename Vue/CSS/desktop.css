@@ -116,9 +116,22 @@ a:hover{
     display: table-cell;
     vertical-align: top;
 }
+.center_button_bar{
+    width: 100%;
+    text-align: right;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.center_button_bar button{
+    border-radius: 2px;
+    border: solid 1px #5c666d;
+    background: #a8a8a8;
+    cursor: pointer;
 
+}
 .center_newslist{
-    padding-top: 20px;
+    padding-top: 10px;
     border-bottom: solid 1px #e8e8e8;
 }
 

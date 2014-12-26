@@ -15,10 +15,15 @@ function getElementsByRegexId(regexpParam, tagParam) {
     return elementsTable;
 }
 
-function clickOnAllButton(){
-    var result = getElementsByRegexId(/deroul.*/);
-    console.log(result.length);
-    result.forEach(function(item){
-       item.click();
-    });
+function setNewsState(state){
+    var images = getElementsByRegexId(/but.*/);
+    var content = getElementsByRegexId(/det.*/);
+    console.log(content.length);
+    console.log(images.length);
+    for (var i=0;i<images.length;++i){
+        if(state)
+            showNews(content[i].id,images[i].id);
+        else
+            hideNews(content[i].id,images[i].id);
+    }
 }

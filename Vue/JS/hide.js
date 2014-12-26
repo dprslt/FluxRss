@@ -21,3 +21,17 @@ function toogleNews($val,$img){
         img.style.transform = 'rotate(0deg)';
     }
 }
+
+function showNews($val,$img){
+    var img = document.getElementById($img);
+    var item = document.getElementById($val);
+        item.style.maxHeight = '99em';
+        img.style.transform = 'rotate(180deg)';
+}
+
+function hideNews($val,$img){
+    var img = document.getElementById($img);
+    var item = document.getElementById($val);
+    item.style.maxHeight = '0em';
+    img.style.transform = 'rotate(0deg)';
+}
