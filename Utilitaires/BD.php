@@ -60,6 +60,7 @@ class BD {
             return $result;
        }
        catch (PDOException $e){
+            echo $e->getMessage();
             throw new Exception("Erreur de lecture BD, requete invalide ?");
        }
    }

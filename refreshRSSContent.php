@@ -7,6 +7,22 @@
 
 use modele\FluxModele;
 use modele\NewsModele;
+use config\SplClassLoader;
+
+require_once("Config/config.php");
+require_once ($path."Config/spLClassLoader.php");
+
+/* Chargement de l'autoloader */
+$myAutoLoader = new SplClassLoader("config",$path);
+$myAutoLoader->register();
+$myAutoLoader = new SplClassLoader("controleur", $path);
+$myAutoLoader->register();
+$myAutoLoader = new SplClassLoader("metier",$path);
+$myAutoLoader->register();
+$myAutoLoader = new SplClassLoader("modele",$path);
+$myAutoLoader->register();
+$myAutoLoader = new SplClassLoader("utilitaires",$path);
+$myAutoLoader->register();
 
 $mod = new FluxModele();
 $fluxs = $mod->getListFlux();

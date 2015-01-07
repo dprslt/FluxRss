@@ -6,7 +6,7 @@
 
 {% block contenu %}
     <div class="center_newslist">
-        {{ fluxmacr.Flux(Flux.id, Flux.title, Flux.link, Flux.description, Flux.imageUrl, Flux.imageLink, Flux.imageTitre) }}
+        {{ fluxmacr.Flux(Flux.id, Flux.title, Flux.link, Flux.description, Flux.imageUrl, Flux.imageLink, Flux.imageTitre,true, Admin, Flux.path) }}
     </div>
 
     {%include 'News.twig'%}

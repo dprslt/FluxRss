@@ -1,3 +1,10 @@
 {% for element in Fluxs|slice(0, 10) %}
-    <p class="menu_flux"><img src="{{ element.favicon }}"/><a href="?action=afficherNewsDe&flux={{ element.id }}">{{element.title}}</a></p>
+    <p class="menu_flux"><img src="{{ element.favicon }}"/><a href="?action=afficherNewsDe&flux={{ element.id }}">
+
+            {% if element.title != "" %}
+                {{ element.title }}
+            {% else %}
+                {{ element.path }}
+            {% endif %}
+    </a></p>
 {%endfor%}
