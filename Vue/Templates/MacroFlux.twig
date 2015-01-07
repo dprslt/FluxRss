@@ -12,12 +12,14 @@
             </div>
             <p>{{ resume }}</p>
         </div>
+        {% if admin %}
             <div class="flux_admin_control" >
                 <form action="?action=supprimerFlux" method="post" onsubmit="return confirm('Confirmer la suppression du flux {{ titre }}')">
                     <input type="hidden" name="id" value="{{ id }}" />
                     <input type="submit" value="Supprimer"  />
                 </form>
             </div>
+        {% endif %}
 
     </div>
 {% endmacro %}

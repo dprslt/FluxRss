@@ -17,7 +17,6 @@ use utilitaires\Validation;
 use modele\FluxModele;
 use modele\NewsModele;
 use utilitaires\XMLParser;
-use modele\AdminModele;
 
 
 class userControl

@@ -1,25 +1,21 @@
 {% import 'MacroFlux.twig' as VueFlux %}
 
-
-
 <div class="center_newslist">
 
     {% if Admin %}
-        <div class="flux_admin_add">
-            skjghsfsj
-        </div>
+            {%  include 'Form_AjouterFlux.twig' %}
     {% endif %}
 
     {% for element in Fluxs %}
         {#Appelle macro pour afficher tous les Flux#}
-        {{ VueFlux.Flux(element.id, element.title, element.link, element.description, element.imageUrl, element.imageLink, element.imageTitre,Admin) }}
+        {{ VueFlux.Flux(element.id, element.title, element.link, element.description, element.imageUrl, element.imageLink, element.imageTitre,true, Admin) }}
     {% endfor %}
 </div>
 
 
 <div class="page_navigation">
     {%  if numpage > 1  %}
-        <a href="?action=afficherFlux&page={{ numpage-1 }}">Pr�c�dent</a> |
+        <a href="?action=afficherFlux&page={{ numpage-1 }}">Précédent</a> |
     {% endif %}
     <a href="?action=afficherFlux&page={{ numpage+1 }}">Suivant</a>
 </div>
