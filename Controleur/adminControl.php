@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Theo
- * Date: 10/12/2014
- * Time: 21:32
- */
 
 namespace controleur;
 
@@ -14,6 +8,7 @@ use utilitaires\Validation;
 use Twig_Autoloader;
 use Twig_Environment;
 use Twig_Loader_Filesystem;
+use utilitaires\Boniche;
 
 class adminControl{
     private $twig;
@@ -78,8 +73,11 @@ class adminControl{
     function AfficherPageConnexion(){
         $fluxs = $this->fluxModele->getPageFlux(1);
         $template = $this->twig->loadTemplate('pageConnexion.twig');
+        
         echo $template->render(array(
             'Fluxs' => $fluxs,
+            Boniche::NettoyageLOGIN($_REQUEST['msg']),
+            
                 ));
     }
     

@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Theo
- * Date: 18/12/2014
- * Time: 10:46
- */
+
 
 namespace modele;
 
