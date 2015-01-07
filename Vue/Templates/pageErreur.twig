@@ -1,7 +1,8 @@
 {% extends 'pageAvecMenu.twig' %}
 
 {% block contenu %}
-{% for key, element in Erreur %}
-    <p>{{ element }}</p>
-{% endfor %}
+    <h3 class="center-error">Erreur !</h3>
+    {% for key, element in Erreur %}
+        <p>{{ element }}</p>
+    {% endfor %}
 {% endblock %}

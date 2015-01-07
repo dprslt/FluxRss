@@ -56,6 +56,7 @@ class adminControl{
                     header("Location: .");
                     break;
                 case 'supprimerFlux':
+
                     echo "OuiiiI";
                     break;
             }

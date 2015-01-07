@@ -155,6 +155,15 @@ class PersistanceBD extends Persistance {
         $bd->requete("DELETE FROM `tnews`",array());
     }
 
+    public function supprimerFlux($id){
+        $bd = BD::getInstance();
+        $bd->requete("DELETE FROM `tnews` WHERE flux = ?", array(
+            '1' => array($id, PDO::PARAM_INT),
+        ));
+        $bd->requete("DELETE FROM `tflux` WHERE id = ?", array(
+            '1' => array($id, PDO::PARAM_INT),
+        ));
+    }
 
     /*----- Private -----*/
     private function tabFluxFromRequest($tabResult,$index = true) {

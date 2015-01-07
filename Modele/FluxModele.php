@@ -8,6 +8,7 @@
 
 namespace modele;
 
+use config\Validation;
 use utilitaires\Boniche;
 use utilitaires\PersistanceBD;
 
@@ -36,10 +37,15 @@ class FluxModele {
     }
 
     public function ajouterFlux($link){
-        Boniche::NettoyageURL($link);
-        Boniche::NettoyageBDD($link);
+        $link = Boniche::NettoyageURL($link);
+        $link = Boniche::NettoyageBDD($link);
 
         $this->dal->ajouterNouveauFlux($link);
+    }
+
+    public function supprimerFlux($id){
+        $id = Boniche::NettoyageBDD($id);
+        $this->dal->supprimerFlux($id);
     }
 
 
