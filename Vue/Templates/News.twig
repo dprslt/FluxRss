@@ -12,9 +12,24 @@
     {% endfor %}
 </div>
 
+{% if Flux is defined %}
+    <div class="page_navigation">
+        {%  if numpage > 1  %}
+            <a href="?action=afficherNewsDe&flux={{ Flux.id }}&page={{ numpage-1 }}">Précédent</a>
+        {% endif %}
+        |
+        {% if nbTotNews > nbNewsPage*numpage %}
+            <a href="?action=afficherNewsDe&flux={{ Flux.id }}&page={{ numpage+1 }}">Suivant</a>
+        {% endif %}
+    </div>
+{% else %}
 <div class="page_navigation">
     {%  if numpage > 1  %}
-        <a href="?page={{ numpage-1 }}">Précédent</a> |
+        <a href="?page={{ numpage-1 }}">Précédent</a>
     {% endif %}
-    <a href="?page={{ numpage+1 }}">Suivant</a>
+     |
+    {% if nbTotNews > nbNewsPage*numpage %}
+        <a href="?page={{ numpage+1 }}">Suivant</a>
+    {% endif %}
 </div>
+{% endif %}

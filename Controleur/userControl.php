@@ -48,13 +48,13 @@ class userControl
                 break;
             case 'afficherNewsDe':
                 $this->afficherNewsDuFlux();
-                
+                break;
         }
     }
 
     private function afficherNews()
     {
-        global $path, $vue;
+        global $nbNewsPage;
         $page = $this->getPage();
 
         $newstab = $this->newsModele->getPageNews($page);
@@ -68,26 +68,30 @@ class userControl
             'News' => $newstab,
             'Fluxs' => $tabFlux,
             'numpage' => $page,
+            'nbNewsPage' => $nbNewsPage,
+            'nbTotNews' => $nbNews,
             'Admin' => $adminco
         ));
 
     }
 
     private function afficherNewsDuFlux(){
+        global $nbNewsPage;
         $fluxid = $_REQUEST['flux'];
         Validation::existe($fluxid);
         Validation::isNumber($fluxid);
 
         $page = $this->getPage();
         $news = $this->newsModele->getNewsFlux($fluxid,$page);
+        $nbNews = $this->fluxModele->getNbNews($fluxid);
         $tabFlux = $this->fluxModele->getListFlux();
         $adminco = $this->admin->isAdmin();
+
 
         $flux = $tabFlux[$fluxid];
         if($flux == null){
 
         }
-
         $template = $this->twig->loadTemplate('pageNewsDeFlux.twig');
 
         echo $template->render(array(
@@ -95,6 +99,8 @@ class userControl
             'Flux' => $flux,
             'News' => $news,
             'numpage' => $page,
+            'nbNewsPage' => $nbNewsPage,
+            'nbTotNews' => $nbNews,
             'Admin' => $adminco
         ));
 
@@ -102,16 +108,19 @@ class userControl
 
     private function afficherFluxs()
     {
-        global $path;
+        global $nbFluxPage;
         
         $page = $this->getPage();
         $fluxs = $this->fluxModele->getPageFlux($page);
+        $nbFlux = $this->fluxModele->getNbFlux();
         $adminco = $this->admin->isAdmin();
         
         $template = $this->twig->loadTemplate('pageListeFlux.twig');
         echo $template->render(array(
             'Fluxs' => $fluxs,
             'numpage' => $page,
+            'nbTotFlux' => $nbFlux,
+            'nbFluxPage' => $nbFluxPage,
             'Admin' => $adminco
         ));
     }

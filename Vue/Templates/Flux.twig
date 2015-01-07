@@ -17,5 +17,7 @@
     {%  if numpage > 1  %}
         <a href="?action=afficherFlux&page={{ numpage-1 }}">Précédent</a> |
     {% endif %}
-    <a href="?action=afficherFlux&page={{ numpage+1 }}">Suivant</a>
+    {% if nbTotFlux > nbFluxPage*numpage %}
+        <a href="?action=afficherFlux&page={{ numpage+1 }}">Suivant</a>
+    {% endif %}
 </div>

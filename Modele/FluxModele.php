@@ -48,5 +48,16 @@ class FluxModele {
         $this->dal->supprimerFlux($id);
     }
 
+    public function getNbNews($fluxid)
+    {
+        $flux = Boniche::NettoyageBDD($fluxid);
+        return $this->dal->getNbNewsOfFlux($flux);
+    }
 
-} 
+    public function getNbFlux()
+    {
+        return $this->dal->getNbFlux();
+    }
+
+
+}

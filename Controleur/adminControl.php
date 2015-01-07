@@ -53,8 +53,7 @@ class adminControl{
                     header("Location: .");
                     break;
                 case 'supprimerFlux':
-
-                    echo "OuiiiI";
+                    $this->supprimerFlux();
                     break;
                 case 'deconnexion':
                     $this->deconnexion();
@@ -112,6 +111,15 @@ class adminControl{
     {
         $lien = $_REQUEST['url'];
         $this->fluxModele->ajouterFlux($lien);
+        header("Location: .?action=afficherFlux");
+    }
+
+    private function supprimerFlux()
+    {
+        $id = $_REQUEST['id'];
+        Validation::existe($id);
+        Validation::isNumber($id);
+        $this->fluxModele->supprimerFlux($id);
         header("Location: .?action=afficherFlux");
     }
 }

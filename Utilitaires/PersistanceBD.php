@@ -65,10 +65,11 @@ class PersistanceBD extends Persistance {
 
     public function getNews($page)
     {
+        global $nbNewsPage;
         $bd = BD::getInstance();
         $params = array(
-            '1' => array(($page-1)*50, PDO::PARAM_INT),
-            '2' => array(50, PDO::PARAM_INT),
+            '1' => array(($page-1)*$nbNewsPage, PDO::PARAM_INT),
+            '2' => array($nbNewsPage, PDO::PARAM_INT),
         );
         $result = $bd->lecture("SELECT * FROM `tnews` ORDER BY datePub DESC LIMIT ?, ?",$params);
         $tabNews = array();
@@ -84,11 +85,12 @@ class PersistanceBD extends Persistance {
 
     public function getNewsFlux($flux,$page)
     {
+        global $nbNewsPage;
         $bd = BD::getInstance();
         $params = array(
             '1' => array($flux, PDO::PARAM_INT),
-            '2' => array(($page-1)*50, PDO::PARAM_INT),
-            '3' => array(50, PDO::PARAM_INT),
+            '2' => array(($page-1)*$nbNewsPage, PDO::PARAM_INT),
+            '3' => array($nbNewsPage, PDO::PARAM_INT),
         );
         $result = $bd->lecture("SELECT * FROM `tnews` WHERE flux = ? ORDER BY datePub DESC LIMIT ?, ?", $params);
         
@@ -112,10 +114,11 @@ class PersistanceBD extends Persistance {
     }
 
     public function getPageFluxs($page){
+        global $nbFluxPage;
         $bd = BD::getInstance();
         $params = array(
-            '1' => array(($page-1)*20, PDO::PARAM_INT),
-            '2' => array(($page)*20, PDO::PARAM_INT),
+            '1' => array(($page-1)*$nbFluxPage, PDO::PARAM_INT),
+            '2' => array(($page)*$nbFluxPage, PDO::PARAM_INT),
         );
         $result = $bd->lecture("SELECT * FROM  `tflux` LIMIT ?, ?",$params);
         return $this->tabFluxFromRequest($result);
@@ -160,6 +163,15 @@ class PersistanceBD extends Persistance {
         ));
     }
 
+    public function getNbNewsOfFlux($flux)
+    {
+        $bd = BD::getInstance();
+        $result = $bd->lecture("SELECT COUNT(*) AS 'count' FROM `tnews` WHERE flux = ?", array(
+            '1' => array($flux, PDO::PARAM_INT),
+        ));
+        return $result[0]['count'];
+    }
+
     /*----- Private -----*/
     private function tabFluxFromRequest($tabResult,$index = true) {
         $tabFlux = array();
@@ -175,5 +187,7 @@ class PersistanceBD extends Persistance {
         }
         return $tabFlux;
     }
-    
+
+
+
 }
