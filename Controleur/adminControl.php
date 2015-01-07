@@ -33,14 +33,34 @@ class adminControl{
         ));
         
         $action = (isset($_REQUEST['action'])?$_REQUEST['action']:null);
-        switch($action){
-            case 'pageConnexion':
-                $this->AfficherPageConnexion();
-                break;
-            case 'connexion':
-                $this->connexion();
-                break;
+
+        $adminModele = new AdminModele();
+        $a=$adminModele->isAdmin();
+
+        if($a == null){
+            switch($action){
+                case 'pageConnexion':
+                    $this->AfficherPageConnexion();
+                    break;
+                case 'connexion':
+                    $this->connexion();
+                    break;
+                default:
+                    header("Location: .?action=pageConnexion");
+            }
         }
+        else{
+            switch($action){
+                case 'pageConnexion':
+                case 'connexion':
+                    header("Location: .");
+                    break;
+                case 'supprimerFlux':
+                    echo "OuiiiI";
+                    break;
+            }
+        }
+
         
     }
 
@@ -64,6 +84,13 @@ class adminControl{
     }
     
     function connexion(){
-    $connexion = $this->adminModele->connecter($_POST['login'],$_POST['mdp']);
+        $resultat = $this->adminModele->connecter($_POST['login'],$_POST['mdp']);
+        if($resultat){
+            header("Location: .");
+        }
+        else{
+            header("Location: .?action=pageConnexion&msg=Identifiants Inconnus");
+        }
+
     }
 }

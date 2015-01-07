@@ -53,17 +53,10 @@ class frontControl{
 
         try{
             $action = (isset($_REQUEST['action'])?$_REQUEST['action']:null);
-            $TabAdmin=array('ajouterFlux', 'supprimerFlux', 'modifierFlux','pageConnexion','connexion');
-            $adminModele = new AdminModele();
-            $a=$adminModele->isAdmin();
+            $TabAdmin=array('ajouterFlux', 'supprimerFlux','pageConnexion','connexion');
+
             if(in_array($action, $TabAdmin)){
-                if($a==null && $action != 'pageConnexion' && $action != 'connexion'){
-                    $_POST['action']="connexion";
-                    new userControl();
-                }
-                else{
-                    new adminControl();
-                }
+                new adminControl();
             }
             else{
                 new userControl();

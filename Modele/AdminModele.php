@@ -42,6 +42,7 @@ class AdminModele {
     public function connecter($login, $mdp){    
         $login = Boniche::NettoyageLOGIN($login);
         $mdp = Boniche::NettoyageLOGIN($mdp);
+        $mdp = md5($mdp);
         
         $dal = new PersistanceBD();
         $result = $dal->authentifier($login, $mdp);
@@ -49,7 +50,9 @@ class AdminModele {
         if($result == 1){
             $_SESSION['role']='admin';
             $_SESSION['login']=$login;
+            return true;
         }
+        return false;
     }
     
     public function deconnecter(){
