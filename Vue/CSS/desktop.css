@@ -7,6 +7,7 @@ body{
     margin: 0;
     font-family: 'Open Sans',sans-serif;
     background: #3e3c3d;
+    min-width: 800px;
 }
 
 .top_bar{
@@ -17,7 +18,7 @@ body{
     background-size: cover;
     height: 50px;
     z-index: 100;
-
+    min-width: 800px;
     border-bottom: solid 2px #d10309;
 }
 .top_bar h1{
