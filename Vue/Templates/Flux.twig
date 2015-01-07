@@ -1,10 +1,10 @@
 {% import 'MacroFlux.twig' as VueFlux %}
 
 <div class="center_newslist">
-{% for element in Fluxs %}
-    {#Appelle macro pour afficher tous les Flux#}
-    {{ VueFlux.Flux(element.id, element.title, element.link, element.description, element.imageUrl, element.imageLink, element.imageTitre,true) }}
-{% endfor %}
+    {% for element in Fluxs %}
+        {#Appelle macro pour afficher tous les Flux#}
+        {{ VueFlux.Flux(element.id, element.title, element.link, element.description, element.imageUrl, element.imageLink, element.imageTitre,true) }}
+    {% endfor %}
 </div>
 
 
