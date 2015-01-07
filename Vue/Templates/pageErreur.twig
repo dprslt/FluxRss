@@ -1,8 +1,11 @@
-{% extends 'pageAvecMenu.twig' %}
+{% extends 'page.twig' %}
 
 {% block contenu %}
-    <h3 class="center-error">Erreur !</h3>
-    {% for key, element in Erreur %}
-        <p>{{ element }}</p>
-    {% endfor %}
+    <div class="center-error">
+        <h3>Erreur !</h3>
+        {% for element in Erreur %}
+            <p>{{ element }}</p>
+        {% endfor %}
+        <img src="Vue/Image/doh.png" width="35%" style="margin-bottom: 20px"/>
+    </div>
 {% endblock %}
