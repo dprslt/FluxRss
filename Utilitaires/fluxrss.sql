@@ -15,6 +15,12 @@ SET time_zone = "+00:00";
 --
 -- Base de données: `fluxrss`
 --
+
+DROP TABLE  `tadmin`;
+DROP TABLE  `tnews`;
+DROP TABLE  `tflux`;
+
+
 CREATE DATABASE IF NOT EXISTS `fluxrss` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `fluxrss`;
 
