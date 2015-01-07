@@ -137,8 +137,11 @@ a:hover{
 }
 .center_button_bar button{
     border-radius: 2px;
-    border: solid 1px #5c666d;
-    background: #a8a8a8;
+    background: #d10309;
+    font-weight: bold;
+    color: white;
+    border: none;
+    padding: 5px 9px;
     cursor: pointer;
 
 }
@@ -279,6 +282,20 @@ a:hover{
     cursor: pointer;
 
     transition: transform 0.5s;
+}
+
+.news_hide_rollable{
+    background: white;
+    text-align: center;
+    width: 100%;
+    color: #5c666d;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 5px 0;
+}
+.news_hide_rollable:hover{
+    background: #f7f7f7;
 }
 
 
