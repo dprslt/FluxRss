@@ -48,7 +48,7 @@ class frontControl{
 
         try{
             $action = (isset($_REQUEST['action'])?$_REQUEST['action']:null);
-            $TabAdmin=array('ajouterFlux', 'supprimerFlux','pageConnexion','connexion', 'deconnexion');
+            $TabAdmin=array('ajouterFlux', 'supprimerFlux','pageConnexion','connexion', 'deconnexion','ajouterFlux');
 
             if(in_array($action, $TabAdmin)){
                 new adminControl();

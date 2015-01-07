@@ -55,16 +55,21 @@ class adminControl{
                 case 'supprimerFlux':
 
                     echo "OuiiiI";
+                    break;
                 case 'deconnexion':
                     $this->deconnexion();
                     break;
+                case 'ajouterFlux':
+                    $this->ajouterFlux();
                     break;
+
+
             }
         }
 
     }
 
-    function addFlux()
+    private function addFlux()
     {
         Validation::existe($_REQUEST['link']);
         Validation::URLValid($_REQUEST['link']);
@@ -74,8 +79,8 @@ class adminControl{
         $fluxMod = new FluxModele();
         $fluxMod->ajouterFlux($link);
     }
-    
-    function AfficherPageConnexion(){
+
+    private function AfficherPageConnexion(){
         $fluxs = $this->fluxModele->getPageFlux(1);
         $template = $this->twig->loadTemplate('pageConnexion.twig');
         $adminco = $this->admin->isAdmin();
@@ -87,8 +92,8 @@ class adminControl{
             
         ));
     }
-    
-    function connexion(){
+
+    private function connexion(){
         $resultat = $this->admin->connecter($_POST['login'],$_POST['mdp']);
         if($resultat){
             header("Location: .");
@@ -98,8 +103,15 @@ class adminControl{
         }
     }
     
-    function deconnexion(){
+    private function deconnexion(){
         $this->admin->deconnecter();
         header("Location: .");
+    }
+
+    private function ajouterFlux()
+    {
+        $lien = $_REQUEST['url'];
+        $this->fluxModele->ajouterFlux($lien);
+        header("Location: .?action=afficherFlux");
     }
 }

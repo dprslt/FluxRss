@@ -52,7 +52,7 @@ class userControl
         }
     }
 
-    function afficherNews()
+    private function afficherNews()
     {
         global $path, $vue;
         $page = $this->getPage();
@@ -73,7 +73,7 @@ class userControl
 
     }
 
-    function afficherNewsDuFlux(){
+    private function afficherNewsDuFlux(){
         $fluxid = $_REQUEST['flux'];
         Validation::existe($fluxid);
         Validation::isNumber($fluxid);
