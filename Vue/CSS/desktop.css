@@ -335,3 +335,43 @@ footer p{
     border-radius: 2px;
     padding : 4px 6px;
 }
+
+
+.center_connexion{
+    border-bottom: solid 1px #e8e8e8;
+    border-top: solid 1px #e8e8e8;
+    margin: 10px 0;
+    padding: 10px 0;
+    text-align: center;
+}
+.center_connexion input[type="submit"]{
+    width: 300px;
+    height: 36px;
+    cursor: pointer;
+    vertical-align: top;
+    color:white;
+    border:none;
+    background: #d10309;
+    border-radius: 2px;
+    font-size: 120%;
+    margin: 5px;
+    box-sizing: content-box;
+}
+.center_connexion input[type="text"],input[type="password"]{
+    width: 300px;
+    margin: 5px;
+    height: 25px;
+    border-radius: 3px;
+    border: solid 1px #5c666d;
+    font-size: 110%;
+    padding: 5px;
+}
+
+
+
+.connexion_error{
+    text-align: center;
+    color: #d10309;
+    font-weight: bold;
+    font-size: 120%;
+}

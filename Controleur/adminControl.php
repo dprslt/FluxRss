@@ -86,9 +86,8 @@ class adminControl{
         
         echo $template->render(array(
             'Fluxs' => $fluxs,
-            Boniche::NettoyageLOGIN($_REQUEST['msg']),
+            'msg' => Boniche::NettoyageLOGIN($_REQUEST['msg']),
             'Admin' => $adminco
-            
         ));
     }
 

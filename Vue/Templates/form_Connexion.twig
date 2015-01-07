@@ -1,10 +1,12 @@
 
-{%if msg%}
-    <p>{{msg}}</p>
-{%endif%} 
+<div class="center_connexion">
+    {%if msg%}
+        <p class="connexion_error">{{msg}}</p>
+    {%endif%}
 
-<form action="?action=connexion" method="post">
-    <input type="text" name="login" required="required" placeholder="login"/></br>
-    <input type="password" name="mdp" required="required" placeholder="Mot de passe"/></br>
-    <input type="submit"/>
-</form>
+    <form action="?action=connexion" method="post">
+        <input type="text" name="login" required="required" placeholder="Identifiant"/></br>
+        <input type="password" name="mdp" required="required" placeholder="Mot de passe"/></br>
+        <input type="submit"/>
+    </form>
+</div>
