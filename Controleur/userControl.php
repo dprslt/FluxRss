@@ -22,12 +22,13 @@ class userControl
 {
     private $newsModele;
     private $fluxModele;
-
+    private $admin;
     private $twig;
 
     public function __construct(){
         $this->newsModele = new NewsModele();
         $this->fluxModele = new FluxModele();
+        $this->admin = new AdminModele();
 
         Twig_Autoloader::register();
         $loader = new Twig_Loader_Filesystem('Vue/Templates');
@@ -58,13 +59,15 @@ class userControl
         $newstab = $this->newsModele->getPageNews($page);
         $nbNews = $this->newsModele->getNbNews();
         $tabFlux = $this->fluxModele->getListFlux();
+        $adminco = $this->admin->isAdmin();
 
         $template = $this->twig->loadTemplate('pageAccueil.twig');
 
         echo $template->render(array(
             'News' => $newstab,
             'Fluxs' => $tabFlux,
-            'numpage' => $page
+            'numpage' => $page,
+            'Admin' => $adminco
         ));
 
     }
@@ -77,6 +80,7 @@ class userControl
         $page = $this->getPage();
         $news = $this->newsModele->getNewsFlux($fluxid,$page);
         $tabFlux = $this->fluxModele->getListFlux();
+        $adminco = $this->admin->isAdmin();
 
         $flux = $tabFlux[$fluxid];
         if($flux == null){
@@ -90,6 +94,7 @@ class userControl
             'Flux' => $flux,
             'News' => $news,
             'numpage' => $page,
+            'Admin' => $adminco
         ));
 
     }
@@ -97,12 +102,16 @@ class userControl
     private function afficherFluxs()
     {
         global $path;
+        
         $page = $this->getPage();
         $fluxs = $this->fluxModele->getPageFlux($page);
+        $adminco = $this->admin->isAdmin();
+        
         $template = $this->twig->loadTemplate('pageListeFlux.twig');
         echo $template->render(array(
             'Fluxs' => $fluxs,
             'numpage' => $page,
+            'Admin' => $adminco
         ));
     }
 

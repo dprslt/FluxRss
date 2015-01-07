@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Theo
- * Date: 10/12/2014
- * Time: 21:32
- */
 
 namespace controleur;
 
@@ -14,17 +8,19 @@ use utilitaires\Validation;
 use Twig_Autoloader;
 use Twig_Environment;
 use Twig_Loader_Filesystem;
+use utilitaires\Boniche;
 
 class adminControl{
     private $twig;
     private $fluxModele;
     private $adminModele;
+    private $admin;
     
     public function __construct(){
         global $path;
         
         $this->fluxModele = new FluxModele();
-        $this->adminModele = new AdminModele();
+        $this->admin = new AdminModele();
         
         Twig_Autoloader::register();
         $loader = new Twig_Loader_Filesystem('Vue/Templates');
@@ -33,9 +29,7 @@ class adminControl{
         ));
         
         $action = (isset($_REQUEST['action'])?$_REQUEST['action']:null);
-
-        $adminModele = new AdminModele();
-        $a=$adminModele->isAdmin();
+        $a=$this->admin->isAdmin();
 
         if($a == null){
             switch($action){
@@ -44,6 +38,9 @@ class adminControl{
                     break;
                 case 'connexion':
                     $this->connexion();
+                    break;
+                case 'deconnexion':
+                    $this->deconnexion();
                     break;
                 default:
                     header("Location: .?action=pageConnexion");
@@ -58,6 +55,9 @@ class adminControl{
                 case 'supprimerFlux':
 
                     echo "OuiiiI";
+                case 'deconnexion':
+                    $this->deconnexion();
+                    break;
                     break;
             }
         }
@@ -79,19 +79,27 @@ class adminControl{
     function AfficherPageConnexion(){
         $fluxs = $this->fluxModele->getPageFlux(1);
         $template = $this->twig->loadTemplate('pageConnexion.twig');
+        $adminco = $this->admin->isAdmin();
+        
         echo $template->render(array(
             'Fluxs' => $fluxs,
-                ));
+            Boniche::NettoyageLOGIN($_REQUEST['msg']),
+            'Admin' => $adminco
+            
+        ));
     }
     
     function connexion(){
-        $resultat = $this->adminModele->connecter($_POST['login'],$_POST['mdp']);
+        $resultat = $this->admin->connecter($_POST['login'],$_POST['mdp']);
         if($resultat){
             header("Location: .");
         }
         else{
             header("Location: .?action=pageConnexion&msg=Identifiants Inconnus");
         }
-
+    }
+    
+    function deconnexion(){
+        $this->admin->deconnecter();
     }
 }

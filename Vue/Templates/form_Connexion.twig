@@ -1,4 +1,8 @@
 
+{%if msg%}
+    <p>{{msg}}</p>
+{%endif%} 
+
 <form action="?action=connexion" method="post">
     <input type="text" name="login" required="required" placeholder="login"/></br>
     <input type="password" name="mdp" required="required" placeholder="Mot de passe"/></br>

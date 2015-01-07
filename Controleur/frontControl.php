@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Theo
- * Date: 10/12/2014
- * Time: 21:30
- */
+
 namespace controleur;
 use config\SplClassLoader;
 use controleur\adminControl;
@@ -53,7 +48,7 @@ class frontControl{
 
         try{
             $action = (isset($_REQUEST['action'])?$_REQUEST['action']:null);
-            $TabAdmin=array('ajouterFlux', 'supprimerFlux','pageConnexion','connexion');
+            $TabAdmin=array('ajouterFlux', 'supprimerFlux','pageConnexion','connexion', 'deconnexion');
 
             if(in_array($action, $TabAdmin)){
                 new adminControl();
