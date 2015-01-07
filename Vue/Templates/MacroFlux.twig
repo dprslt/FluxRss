@@ -12,5 +12,13 @@
             </div>
             <p>{{ resume }}</p>
         </div>
+
+            <div class="flux_admin_control" >
+                <form action="?action=supprimerFlux" method="post">
+                    <input type="hidden" name="id" value="{{ id }}" />
+                    <input type="submit" value="Supprimer" />
+                </form>
+            </div>
+
     </div>
 {% endmacro %}

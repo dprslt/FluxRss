@@ -50,7 +50,9 @@ class AdminModele {
         if($result == 1){
             $_SESSION['role']='admin';
             $_SESSION['login']=$login;
+            return true;
         }
+        return false;
     }
     
     public function deconnecter(){

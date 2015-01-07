@@ -49,6 +49,7 @@ a:hover{
     background: white;
     margin-top: 50px;
     width: 100%;
+    min-height: 450px;
 }
 .navig_bar{
     display: table-cell;
@@ -277,3 +278,18 @@ footer p{
     line-height: 15px;
 }
 
+
+.flux_admin_control{
+    display: table-cell;
+    width: 60px;
+    height:  100%;
+    vertical-align: middle;
+    padding: 0 10px;
+}
+.flux_admin_control input[type="submit"]{
+    background: #d10309;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    padding : 4px 6px;
+}

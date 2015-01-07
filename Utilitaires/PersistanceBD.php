@@ -31,7 +31,7 @@ class PersistanceBD extends Persistance {
             '1' => array($admin, PDO::PARAM_STR),
             '2' => array($pass, PDO::PARAM_STR)
         );
-        $result = $bd->lecture("SELECT COUNT(*) AS nb FROM tAdmin WHERE login = ? AND pass = ?", $params);
+        $result = $bd->lecture("SELECT COUNT(*) AS nb FROM tAdmin WHERE login = ? AND mdp = ?", $params);
         return $result[0]['nb'];
     }
 
