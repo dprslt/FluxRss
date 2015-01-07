@@ -129,7 +129,7 @@ class XMLParser {
             case "ITEM":
                 $bd = new \utilitaires\PersistanceBD();
                 $dateAjout = new \DateTime($this->datePub);
-                $bd->ajouterNews(new \metier\News(0,$this->flux->getId(),$this->title,$this->link,$this->guid,$this->close_tag_html($this->description),$this->datePub,$dateAjout->format('Y-m-d H:i:s')));
+                $bd->ajouterNews(new \metier\News(0,$this->flux->getId(),$this->title,$this->link,$this->guid,$this->close_tag_html($this->description),$dateAjout->format('Y-m-d H:i:s')));
                 unset($this->description,$this->title,$this->link,$this->guid,$this->datePub);
                 $this->b_item = false;
                 return;

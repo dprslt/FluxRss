@@ -105,18 +105,15 @@ class News {
     }
 
 
-    public function __construct($id,$flux,$title,$url,$guid,$description,$datePub = "",$dateAjout = "today"){
+    public function __construct($id,$flux,$title,$url,$guid,$description,$datePub = ""){
         $this->id = $id;
         $this->flux = $flux;
         $this->title = $title;
         $this->url = $url;
         $this->guid = $guid;
         $this->description = $description;
-        if($dateAjout == "today")
-            $dateAjout = date("H:i d m Y");
 
         $this->setDatePub($datePub);
-        $this->setDateAjout($dateAjout);
     }
 
 } 

@@ -57,9 +57,8 @@ class PersistanceBD extends Persistance {
             '4' => array($news->getGuid(), PDO::PARAM_STR),
             '5' => array($news->getDescription(), PDO::PARAM_STR),
             '6' => array($news->getDatePub(), PDO::PARAM_STR),
-            '7' => array($news->getDateAjout(), PDO::PARAM_STR)
         );
-        $bd->requete("INSERT INTO tnews VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)",$params);
+        $bd->requete("INSERT INTO tnews VALUES (NULL, ?, ?, ?, ?, ?, ?)",$params);
     }
 
 
@@ -71,16 +70,8 @@ class PersistanceBD extends Persistance {
             '1' => array(($page-1)*$nbNewsPage, PDO::PARAM_INT),
             '2' => array($nbNewsPage, PDO::PARAM_INT),
         );
-        $result = $bd->lecture("SELECT * FROM `tnews` ORDER BY dateAjout DESC LIMIT ?, ?",$params);
-        $tabNews = array();
-        foreach($result as $news){
-            $tabNews[] = new News($news['id'],$news['flux'],
-                            $news['title'],$news['url'],
-                            $news['guid'],html_entity_decode($news['description']),
-                            $news['datePub'],$news['dateAjout']
-            );
-        }
-        return $tabNews;
+        $result = $bd->lecture("SELECT * FROM `tnews` ORDER BY datePub DESC LIMIT ?, ?",$params);
+        return $this->tabNewsFromRequest($result);
     }
 
     public function getNewsFlux($flux,$page)
@@ -92,18 +83,9 @@ class PersistanceBD extends Persistance {
             '2' => array(($page-1)*$nbNewsPage, PDO::PARAM_INT),
             '3' => array($nbNewsPage, PDO::PARAM_INT),
         );
-        $result = $bd->lecture("SELECT * FROM `tnews` WHERE flux = ? ORDER BY dateAjout DESC LIMIT ?, ?", $params);
-        
-        $tabNews = array();
-        foreach($result as $news){
-            $tabNews[] = new News($news['id'],$news['flux'],
-                $news['title'],$news['url'],
-                $news['guid'],html_entity_decode($news['description']),
-                $news['datePub'],$news['dateAjout']
-            );
-        }
+        $result = $bd->lecture("SELECT * FROM `tnews` WHERE flux = ? ORDER BY datePub DESC LIMIT ?, ?", $params);
 
-        return $tabNews;
+        return $this->tabNewsFromRequest($result);
     }
 
     public function getNbNews(){
@@ -186,6 +168,18 @@ class PersistanceBD extends Persistance {
                     $flux['image_titre'],$flux['image_link']);
         }
         return $tabFlux;
+    }
+
+    private function tabNewsFromRequest($result){
+        $tabNews = array();
+        foreach($result as $news){
+            $tabNews[] = new News($news['id'],$news['flux'],
+                $news['title'],$news['url'],
+                $news['guid'],html_entity_decode($news['description']),
+                $news['datePub']
+            );
+        }
+        return $tabNews;
     }
 
 
