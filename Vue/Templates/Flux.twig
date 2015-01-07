@@ -6,13 +6,13 @@
 
     {% if Admin %}
         <div class="flux_admin_add">
-
+            skjghsfsj
         </div>
     {% endif %}
 
     {% for element in Fluxs %}
         {#Appelle macro pour afficher tous les Flux#}
-        {{ VueFlux.Flux(element.id, element.title, element.link, element.description, element.imageUrl, element.imageLink, element.imageTitre,true) }}
+        {{ VueFlux.Flux(element.id, element.title, element.link, element.description, element.imageUrl, element.imageLink, element.imageTitre,Admin) }}
     {% endfor %}
 </div>
 

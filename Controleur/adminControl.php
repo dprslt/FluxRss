@@ -62,7 +62,6 @@ class adminControl{
             }
         }
 
-        
     }
 
     function addFlux()

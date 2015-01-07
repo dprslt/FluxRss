@@ -9,6 +9,7 @@
 namespace controleur;
 
 
+use modele\AdminModele;
 use Twig_Autoloader;
 use Twig_Environment;
 use Twig_Loader_Filesystem;
