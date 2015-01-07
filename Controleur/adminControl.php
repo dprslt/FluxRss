@@ -100,5 +100,6 @@ class adminControl{
     
     function deconnexion(){
         $this->admin->deconnecter();
+        header("Location: .");
     }
 }
