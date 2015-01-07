@@ -19,21 +19,32 @@ class AdminModele {
 
     public function isAdmin(){
        
-        $role = $_SESSION['role'];
-        $login = $_SESSION['login'];
+        // Supression des warnings
+        if(isset($_SESSION['role'])){
+            $role = $_SESSION['role'];
+        }
+        else return null;
+            
+        if(isset($_SESSION['login'])){
+            $login = $_SESSION['login'];
+        }
+        else return null;
+            
         
         $login = Boniche::NettoyageLOGIN($login);
-        $mdp = Boniche::NettoyageMDP($mdp);
-        
+                
         if(isset($role)&&isset($login)&&$role=='admin'){
             return new Admin($role, $login);
         }
         else {return null;}
     }
     
-    public function connecter($login, $mdp){        
+    public function connecter($login, $mdp){    
+        $login = Boniche::NettoyageLOGIN($login);
+        $mdp = Boniche::NettoyageLOGIN($mdp);
+        
         $dal = new PersistanceBD();
-        $result = $dal->authentifier("r");
+        $result = $dal->authentifier($login, $mdp);
         
         if($result == 1){
             $_SESSION['role']='admin';

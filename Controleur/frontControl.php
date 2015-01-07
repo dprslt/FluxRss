@@ -52,15 +52,12 @@ class frontControl{
         $template = $twig->loadTemplate('pageErreur.twig');
 
         try{
-            $action=$_REQUEST['action'];
-            $TabAdmin=array('ajouterFlux', 'supprimerFlux', 'modifierFlux', 'rafraichirNews');
+            $action = (isset($_REQUEST['action'])?$_REQUEST['action']:null);
+            $TabAdmin=array('ajouterFlux', 'supprimerFlux', 'modifierFlux','pageConnexion','connexion');
             $adminModele = new AdminModele();
             $a=$adminModele->isAdmin();
             if(in_array($action, $TabAdmin)){
-                new adminControl();
-                //Attente page authentification + Session
-                return;
-                if($a==null){
+                if($a==null && $action != 'pageConnexion' && $action != 'connexion'){
                     $_POST['action']="connexion";
                     new userControl();
                 }

@@ -35,7 +35,8 @@ class userControl
             'cache' => false
         ));
 
-        switch ($_REQUEST['action']){
+        $action = (isset($_REQUEST['action'])?$_REQUEST['action']:null);
+        switch ($action){
             case null:
             case 'afficherNews':
                 $this->afficherNews();
@@ -45,6 +46,7 @@ class userControl
                 break;
             case 'afficherNewsDe':
                 $this->afficherNewsDuFlux();
+                
         }
     }
 
@@ -106,9 +108,7 @@ class userControl
 
 
     private function getPage(){
-        $page = $_REQUEST['page'];
-        if(!isset($page))
-            $page = 1;
+        $page = (isset($_REQUEST['page'])?$_REQUEST['page']:1);
         Validation::isNumber($page);
         return $page;
     }
