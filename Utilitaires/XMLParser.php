@@ -83,7 +83,6 @@ class XMLParser {
     private $guid;
     private $description;
     private $datePub;
-    private $dateAjout;
 
 
     private $link;
@@ -129,8 +128,9 @@ class XMLParser {
         switch($name){
             case "ITEM":
                 $bd = new \utilitaires\PersistanceBD();
-                $bd->ajouterNews(new \metier\News(0,$this->flux->getId(),$this->title,$this->link,$this->guid,$this->close_tag_html($this->description),$this->datePub,date('Y-m-d H:i:s')));
-                unset($this->description,$this->title,$this->link,$this->guid,$this->datePub,$this->dateAjout);
+                $dateAjout = new \DateTime($this->datePub);
+                $bd->ajouterNews(new \metier\News(0,$this->flux->getId(),$this->title,$this->link,$this->guid,$this->close_tag_html($this->description),$this->datePub,$dateAjout->format('Y-m-d H:i:s')));
+                unset($this->description,$this->title,$this->link,$this->guid,$this->datePub);
                 $this->b_item = false;
                 return;
             case "IMAGE":

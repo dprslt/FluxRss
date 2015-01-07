@@ -71,7 +71,7 @@ class PersistanceBD extends Persistance {
             '1' => array(($page-1)*$nbNewsPage, PDO::PARAM_INT),
             '2' => array($nbNewsPage, PDO::PARAM_INT),
         );
-        $result = $bd->lecture("SELECT * FROM `tnews` ORDER BY datePub DESC LIMIT ?, ?",$params);
+        $result = $bd->lecture("SELECT * FROM `tnews` ORDER BY dateAjout DESC LIMIT ?, ?",$params);
         $tabNews = array();
         foreach($result as $news){
             $tabNews[] = new News($news['id'],$news['flux'],
@@ -92,7 +92,7 @@ class PersistanceBD extends Persistance {
             '2' => array(($page-1)*$nbNewsPage, PDO::PARAM_INT),
             '3' => array($nbNewsPage, PDO::PARAM_INT),
         );
-        $result = $bd->lecture("SELECT * FROM `tnews` WHERE flux = ? ORDER BY datePub DESC LIMIT ?, ?", $params);
+        $result = $bd->lecture("SELECT * FROM `tnews` WHERE flux = ? ORDER BY dateAjout DESC LIMIT ?, ?", $params);
         
         $tabNews = array();
         foreach($result as $news){
