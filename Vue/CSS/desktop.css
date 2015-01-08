@@ -70,6 +70,7 @@ a:hover{
     top:0;
     background: #fcfcfc;
     margin-top: 50px;
+    max-width: 200px;
 }
 
 .navig_bar h2{
