@@ -1,0 +1,22 @@
+Explorer le monde
+Lecteur fluxs RSS
+
+Dévellopeurs :
+    Charlotte DELAIN : charlotte.delain@etu.udamail.fr
+    Theo DEPRESLE : theo.depresle@etu.udamail.fr
+    IUT Informatique - Clermont-Ferrand, FRANCE
+
+Utilisation :
+    1 - Charger le fichier "fluxrss.sql".
+    2 - Définir le nom, le serveur et les identifiants de la base de donnée dans le fichier "Config/config.php".
+    3 - Placer le site dans le répertoire de votre serveur WEB (Apache, nginx,..) .
+    4 - Vous pouvez vous connecter en utilisant le lien en haut à droite.
+        Les identifiants sont :
+                user :      Admin
+                password:   admin
+        Pour l'instant, le changement du mot de passe s'éffectue dans la base de donnée dans la table `tadmin`.
+        Le mot de passe est crypté en utilisant la méthode md5.
+        Vous pouvez convertir votre mot de passe en utilisant le script "md5.php".
+
+
+
