@@ -18,5 +18,12 @@ Utilisation :
         Le mot de passe est crypté en utilisant la méthode md5.
         Vous pouvez convertir votre mot de passe en utilisant le script "md5.php".
 
+Mise à jour des Fluxs:
+
+    La mise à jour peut être éffectué :
+        - Depuis le site en étant connecté par le bouton "Rafraichir base" se trouvant dans la barre de menu à gauche
+        - En executant le fichier "refreshRSSContent.php".
+    Il est possible d'appeler le fihier "refreshRSSContent.php" depuis une tâche CRON et donc d'automatiser la mise à
+     jour.
 
 
