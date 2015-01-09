@@ -29,7 +29,7 @@ class BD {
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         } catch (Exception $ex) {
-            echo $ex->getMessage();
+            throw new Exception("Erreur connexion base de donnée");
             //die("Erreur connexion");
         }
         
