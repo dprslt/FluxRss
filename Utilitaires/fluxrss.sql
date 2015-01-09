@@ -16,9 +16,10 @@ SET time_zone = "+00:00";
 -- Base de données: `fluxrss`
 --
 
-DROP TABLE  `tadmin`;
-DROP TABLE  `tnews`;
-DROP TABLE  `tflux`;
+DROP TABLE IF EXISTS `tadmin`;
+DROP TABLE IF EXISTS `tnews`;
+DROP TABLE IF EXISTS `tflux`;
+DROP TABLE IF EXISTS `tParams`;
 
 
 CREATE DATABASE IF NOT EXISTS `fluxrss` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
@@ -41,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `tflux` (
   `image_link` varchar(1000),
   PRIMARY KEY (`id`),
   UNIQUE KEY `path` (`path`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0 ;
 
 -- --------------------------------------------------------
 
@@ -59,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `tnews` (
   `datePub` DATETIME NOT NULL ,
   PRIMARY KEY (`id`),
   KEY `flux` (`flux`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0 ;
 
 --
 -- Contraintes pour la table `tnews`
@@ -78,4 +79,16 @@ CREATE TABLE IF NOT EXISTS `tAdmin` (
   `login` varchar(50) NOT NULL,  
   `mdp` varchar(50) NOT NULL,
   PRIMARY KEY (`login`)
-);
+)ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `tParams`
+--
+
+CREATE TABLE IF NOT EXISTS `tParams` (
+  `param` VARCHAR(255) NOT NULL  ,
+  `value` VARCHAR(255),
+  PRIMARY KEY (`param`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0

@@ -147,6 +147,10 @@ a:hover{
     cursor: pointer;
 
 }
+
+.border-bottom{
+ border-bottom: solid 1px #e8e8e8;
+}
 .center_newslist{
     padding-top: 10px;
     border-bottom: solid 1px #e8e8e8;

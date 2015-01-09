@@ -4,6 +4,7 @@ namespace controleur;
 
 use modele\AdminModele;
 use modele\FluxModele;
+use modele\ParametreModele;
 use utilitaires\Validation;
 use Twig_Autoloader;
 use Twig_Environment;
@@ -13,7 +14,7 @@ use utilitaires\Boniche;
 class adminControl{
     private $twig;
     private $fluxModele;
-    private $adminModele;
+    private $paramModele;
     private $admin;
     
     public function __construct(){
@@ -21,6 +22,7 @@ class adminControl{
         
         $this->fluxModele = new FluxModele();
         $this->admin = new AdminModele();
+        $this->paramModele = new ParametreModele();
         
         Twig_Autoloader::register();
         $loader = new Twig_Loader_Filesystem('Vue/Templates');
@@ -61,7 +63,9 @@ class adminControl{
                 case 'ajouterFlux':
                     $this->ajouterFlux();
                     break;
-
+                case 'setNbNews':
+                    $this->setNbNewsParPage();
+                    break;
 
             }
         }
@@ -120,5 +124,16 @@ class adminControl{
         Validation::isNumber($id);
         $this->fluxModele->supprimerFlux($id);
         header("Location: .?action=afficherFlux");
+    }
+
+    private function setNbNewsParPage()
+    {
+        $nbNews = $_REQUEST['nbNews'];
+        Validation::isNumber($nbNews);
+
+        $this->paramModele->setParameters('nbNewsPage', $nbNews);
+
+        header("Location: .?action=afficherFlux");
+
     }
 }

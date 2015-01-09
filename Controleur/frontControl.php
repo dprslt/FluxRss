@@ -5,6 +5,7 @@ use config\SplClassLoader;
 use controleur\adminControl;
 use controleur\userControl;
 use metier\Flux;
+use modele\ParametreModele;
 use utilitaires\XMLParser;
 use modele\AdminModele;
 use Exception;
@@ -20,10 +21,9 @@ class frontControl{
     public function __construct()
     {
 
-        global $path;
+        global $path, $nbNewsPage;
 
         require_once ($path."Config/spLClassLoader.php");
-
 
         $myAutoLoader = new SplClassLoader("config",$path);
         $myAutoLoader->register();
@@ -38,7 +38,11 @@ class frontControl{
         $myAutoLoader = new SplClassLoader("Twig",$path."lib/");
         $myAutoLoader->setNamespaceSeparator("_");
         $myAutoLoader->register();
-        
+
+        $params = new ParametreModele();
+
+        $nbNewsPage = $params->getParameters('nbNewsPage');
+
         $loader = new Twig_Loader_Filesystem('Vue/Templates'); // Dossier contenant les templates
         $twig = new Twig_Environment($loader, array(
             'cache' => false
@@ -48,7 +52,8 @@ class frontControl{
 
         try{
             $action = (isset($_REQUEST['action'])?$_REQUEST['action']:null);
-            $TabAdmin=array('ajouterFlux', 'supprimerFlux','pageConnexion','connexion', 'deconnexion','ajouterFlux');
+            $TabAdmin=array('ajouterFlux', 'supprimerFlux','pageConnexion','connexion',
+                        'deconnexion','ajouterFlux', 'setNbNews');
 
             if(in_array($action, $TabAdmin)){
                 new adminControl();

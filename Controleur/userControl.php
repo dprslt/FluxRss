@@ -108,11 +108,12 @@ class userControl
 
     private function afficherFluxs()
     {
-        global $nbFluxPage;
+        global $nbFluxPage, $nbNewsPage;
         
         $page = $this->getPage();
         $fluxs = $this->fluxModele->getPageFlux($page);
         $nbFlux = $this->fluxModele->getNbFlux();
+
         $adminco = $this->admin->isAdmin();
         
         $template = $this->twig->loadTemplate('pageListeFlux.twig');
@@ -121,6 +122,7 @@ class userControl
             'numpage' => $page,
             'nbTotFlux' => $nbFlux,
             'nbFluxPage' => $nbFluxPage,
+            'nbNewsPage' => $nbNewsPage,
             'Admin' => $adminco
         ));
     }

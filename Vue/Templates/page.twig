@@ -19,6 +19,8 @@
                     <div class="info_connexion">
                         {%if Admin %}
                             <p>Connecté en tant qu'Admin.    <a href="?action=deconnexion">Deconnexion</a></p>
+                        {%  else %}
+                            <p><a href="?action=pageConnexion">Connexion</a></p>
                         {%endif%}
                             
                     </div>

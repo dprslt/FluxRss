@@ -5,7 +5,9 @@
         <button onclick="setNewsState(true)">Dérouler tout</button>
         <button onclick="setNewsState(false)">Replier tout</button>
     </div>
-
+    {% if News is empty %}
+        <p style="text-align: center">Aucune News</p>
+    {% endif %}
     {% for element in News %}
         {#Appelle macro pour afficher toutes les News#}
         {{ VueNew.News(element.id, element.title, element.description, element.url, element.flux, Fluxs[element.Flux].favicon, Fluxs[element.Flux].imageTitre ) }}

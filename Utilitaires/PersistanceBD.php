@@ -154,6 +154,41 @@ class PersistanceBD extends Persistance {
         return $result[0]['count'];
     }
 
+
+    public function getParameters($parameter){
+        $bd = BD::getInstance();
+        $result = $bd->lecture("SELECT `value` FROM `tparams` WHERE `param` = ?", array(
+            '1' => array($parameter, PDO::PARAM_STR),
+        ));
+        return (int)$result[0]['value'];
+    }
+
+    public function setParameters($param, $value){
+        $bd = BD::getInstance();
+        $result = $bd->lecture("SELECT COUNT(*) as `count` FROM `tparams` WHERE `param` = ?", array(
+            '1' => array($param, PDO::PARAM_STR),
+        ));
+        if( $result[0]['count'] == 0){
+            $bd->requete("INSERT INTO `tparams` VALUES (?,?)", array(
+                '1' => array($param, PDO::PARAM_STR),
+                '2' => array($value, PDO::PARAM_STR),
+            ));
+        }
+        else{
+            $bd->requete("UPDATE `tparams` SET `value` = ? WHERE `param` = ?", array(
+                '1' => array($value, PDO::PARAM_STR),
+                '2' => array($param, PDO::PARAM_STR),
+            ));
+        }
+    }
+
+    public function removeParameters($param){
+        $bd = BD::getInstance();
+        $bd->requete("REMOVE FROM `tparams` WHERE `param` = ?", array(
+            '1' => array($param, PDO::PARAM_STR),
+        ));
+    }
+
     /*----- Private -----*/
     private function tabFluxFromRequest($tabResult,$index = true) {
         $tabFlux = array();
@@ -181,6 +216,8 @@ class PersistanceBD extends Persistance {
         }
         return $tabNews;
     }
+
+
 
 
 
