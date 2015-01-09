@@ -1,12 +1,12 @@
-{% macro News(id, titre, description, url, flux, URLImage, TitleImage) %}
+{% macro News(id, titre, description, url, flux, URLImage, TitleImage, date) %}
     <div class="center_news">
         <div class="news_title">
             <div class="news_flux_icon">
                 <a href="?action=afficherNewsDe&flux={{ flux }}" ><img src="{{ URLImage }}" title="{{ TitleImage }}"/></a>
             </div>
             <div class="news_link">
-                <a href="{{ url }}" target="_blank">{{ titre }}</a>
-                <span class="news_more" onclick="toogleNews('det{{ id }}','but{{ id }}')"> - DÃ©tails</span>
+                <a href="{{ url }}" target="_blank">{{ titre }}</a><span class="news_more">{{date}}</sapan>
+                <span class="news_more" onclick="toogleNews('det{{ id }}','but{{ id }}')"> - Détails</span>
             </div>
             <div id="deroul{{ id }}" class="news_deroul" onclick="toogleNews('det{{ id }}','but{{ id }}')"><img id="but{{ id }}" src="Vue/Image/arrow.png"/></div>
         </div>
