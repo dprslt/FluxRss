@@ -61,7 +61,6 @@ class PersistanceBD extends Persistance {
         $bd->requete("INSERT INTO tnews VALUES (NULL, ?, ?, ?, ?, ?, ?)",$params);
     }
 
-
     public function getNews($page)
     {
         global $nbNewsPage;
@@ -153,7 +152,6 @@ class PersistanceBD extends Persistance {
         ));
         return $result[0]['count'];
     }
-
 
     public function getParameters($parameter){
         $bd = BD::getInstance();

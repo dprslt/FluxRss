@@ -13,10 +13,17 @@ abstract class  Persistance {
     public abstract function ajouterNews($news);
 
     public abstract function getNbFlux();
+    public abstract function getListFlux();
     public abstract function getPageFluxs($page);
     public abstract function getFluxById($id);
     public abstract function getNbNews();
     public abstract function getNewsFlux($flux,$page);
     public abstract function getNews($page);
     public abstract function viderNews();
+
+    public abstract function supprimerFlux($id);
+    public abstract function getNbNewsOfFlux($flux);
+    public abstract function getParameters($parameter);
+    public abstract function setParameters($param, $value);
+    public abstract function removeParameters($param);
 } 
