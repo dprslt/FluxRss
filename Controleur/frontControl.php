@@ -21,7 +21,7 @@ class frontControl{
     public function __construct()
     {
 
-        global $path, $nbNewsPage;
+        global $path, $nbNewsPage, $nbFluxPage;
 
         require_once ($path."Config/spLClassLoader.php");
 
@@ -42,6 +42,7 @@ class frontControl{
         $params = new ParametreModele();
 
         $nbNewsPage = $params->getParameters('nbNewsPage');
+        $nbFluxPage = $params->getParameters('nbFluxPage');
 
         $loader = new Twig_Loader_Filesystem('Vue/Templates'); // Dossier contenant les templates
         $twig = new Twig_Environment($loader, array(
@@ -53,7 +54,7 @@ class frontControl{
         try{
             $action = (isset($_REQUEST['action'])?$_REQUEST['action']:null);
             $TabAdmin=array('ajouterFlux', 'supprimerFlux','pageConnexion','connexion',
-                        'deconnexion','ajouterFlux', 'setNbNews');
+                        'deconnexion','ajouterFlux', 'setNbAffiche');
 
             if(in_array($action, $TabAdmin)){
                 new adminControl();

@@ -1,9 +1,11 @@
 <div class="flux_admin_add border-bottom" style="padding-bottom: 10px;">
     <h3>Paramètres</h3>
-    <form action=".?action=setNbNews" method="post">
+    <form action=".?action=setNbAffiche" method="post">
         <label for="nbNews" >Nombre de news par page : </label>
-        <br/>
         <input type="number" name="nbNews" value="{{ nbNewsPage }}" style="width: 50px"/>
+        <br/><br/>
+        <label for="nbNews" >Nombre de Flux par page : </label>
+        <input type="number" name="nbFlux" value="{{ nbFluxPage }}" style="width: 50px"/>
         <br/><br/>
         <input type="submit" value="Enregistrer" />
     </form>

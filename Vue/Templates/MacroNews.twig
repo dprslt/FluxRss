@@ -5,8 +5,8 @@
                 <a href="?action=afficherNewsDe&flux={{ flux }}" ><img src="{{ URLImage }}" title="{{ TitleImage }}"/></a>
             </div>
             <div class="news_link">
-                <a href="{{ url }}" target="_blank">{{ titre }}</a><span class="news_more">{{date}}</sapan>
-                <span class="news_more" onclick="toogleNews('det{{ id }}','but{{ id }}')"> - Détails</span>
+                <a href="{{ url }}" target="_blank">{{ titre }}</a><span class="news_more" style="cursor: default;"> - {{date}}</span>
+                <span class="news_more" onclick="toogleNews('det{{ id }}','but{{ id }}')"> - DÃ©tails</span>
             </div>
             <div id="deroul{{ id }}" class="news_deroul" onclick="toogleNews('det{{ id }}','but{{ id }}')"><img id="but{{ id }}" src="Vue/Image/arrow.png"/></div>
         </div>

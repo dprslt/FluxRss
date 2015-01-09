@@ -63,8 +63,8 @@ class adminControl{
                 case 'ajouterFlux':
                     $this->ajouterFlux();
                     break;
-                case 'setNbNews':
-                    $this->setNbNewsParPage();
+                case 'setNbAffiche':
+                    $this->setNbAffiche();
                     break;
 
             }
@@ -126,11 +126,17 @@ class adminControl{
         header("Location: .?action=afficherFlux");
     }
 
-    private function setNbNewsParPage()
+
+
+    private function setNbAffiche()
     {
+        $nbFlux = $_REQUEST['nbFlux'];
+        Validation::isNumber($nbFlux);
+
         $nbNews = $_REQUEST['nbNews'];
         Validation::isNumber($nbNews);
 
+        $this->paramModele->setParameters('nbFluxPage', $nbFlux);
         $this->paramModele->setParameters('nbNewsPage', $nbNews);
 
         header("Location: .?action=afficherFlux");
